@@ -1,221 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>FiveM Test Menu</title>
-    <style>
-        body {
-            background: #111;
-            color: white;
-            font-family: Arial;
-            margin: 0;
-            padding: 20px;
-        }
-        .menu {
-            width: 300px;
-            background: rgba(0,0,0,0.8);
-            border: 2px solid #00ff00;
-            border-radius: 10px;
-            padding: 20px;
-        }
-        .title {
-            text-align: center;
-            color: #00ff00;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
-        .item {
-            padding: 10px;
-            margin: 5px 0;
-            background: #333;
-            border-radius: 5px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-        }
-        .item:hover {
-            background: #555;
-        }
-        .toggle {
-            width: 40px;
-            height: 20px;
-            background: #666;
-            border-radius: 20px;
-            position: relative;
-        }
-        .toggle.on {
-            background: #00ff00;
-        }
-        .toggle::after {
-            content: '';
-            width: 18px;
-            height: 18px;
-            background: white;
-            border-radius: 50%;
-            position: absolute;
-            top: 1px;
-            left: 1px;
-            transition: 0.3s;
-        }
-        .toggle.on::after {
-            left: 21px;
-        }
-        .button {
-            background: #00ff00;
-            color: black;
-            border: none;
-            padding: 5px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Test Menu</title>
+  <style>
+    body {
+      margin: 0;
+      background: transparent;
+      font-family: Arial, sans-serif;
+    }
+
+    #menu {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+  </style>
 </head>
 <body>
-    <div class="menu">
-        <div class="title">🎮 Test Menu</div>
-        
-        <div class="item" onclick="toggleNoclip()">
-            <span>NoClip</span>
-            <div class="toggle" id="noclip-toggle"></div>
-        </div>
-        
-        <div class="item" onclick="godMode()">
-            <span>God Mode</span>
-            <div class="toggle" id="god-toggle"></div>
-        </div>
-        
-        <div class="item">
-            <span>Heal Player</span>
-            <button class="button" onclick="healPlayer()">Heal</button>
-        </div>
-        
-        <div class="item">
-            <span>Spawn Car</span>
-            <button class="button" onclick="spawnCar()">Spawn</button>
-        </div>
-        
-        <div class="item">
-            <span>Teleport</span>
-            <button class="button" onclick="teleport()">TP</button>
-        </div>
-    </div>
-
-    <script>
-        // متغيرات
-        let noclipActive = false;
-        let godModeActive = false;
-
-        // دالة NoClip
-        function toggleNoclip() {
-            noclipActive = !noclipActive;
-            const toggle = document.getElementById('noclip-toggle');
-            
-            if (noclipActive) {
-                toggle.classList.add('on');
-                executeRedEngine('noclip_on');
-                console.log('NoClip تم تفعيله');
-            } else {
-                toggle.classList.remove('on');
-                executeRedEngine('noclip_off');
-                console.log('NoClip تم إيقافه');
-            }
-        }
-
-        // دالة God Mode
-        function godMode() {
-            godModeActive = !godModeActive;
-            const toggle = document.getElementById('god-toggle');
-            
-            if (godModeActive) {
-                toggle.classList.add('on');
-                executeRedEngine('god_mode_on');
-                console.log('God Mode تم تفعيله');
-            } else {
-                toggle.classList.remove('on');
-                executeRedEngine('god_mode_off');
-                console.log('God Mode تم إيقافه');
-            }
-        }
-
-        // دالة الشفاء
-        function healPlayer() {
-            executeRedEngine('heal_player');
-            console.log('تم شفاء اللاعب');
-        }
-
-        // دالة استدعاء سيارة
-        function spawnCar() {
-            executeRedEngine('spawn_vehicle');
-            console.log('تم استدعاء سيارة');
-        }
-
-        // دالة التليبورت
-        function teleport() {
-            executeRedEngine('teleport_waypoint');
-            console.log('تم التليبورت');
-        }
-
-        // دالة تنفيذ كود RedEngine
-        function executeRedEngine(command) {
-            // هنا يتم تنفيذ الكود في RedEngine
-            const codeMap = {
-                'noclip_on': `
-                    local ped = PlayerPedId()
-                    SetEntityInvincible(ped, true)
-                    FreezeEntityPosition(ped, true)
-                `,
-                'noclip_off': `
-                    local ped = PlayerPedId()
-                    SetEntityInvincible(ped, false)
-                    FreezeEntityPosition(ped, false)
-                `,
-                'god_mode_on': `
-                    local ped = PlayerPedId()
-                    SetEntityInvincible(ped, true)
-                `,
-                'god_mode_off': `
-                    local ped = PlayerPedId()
-                    SetEntityInvincible(ped, false)
-                `,
-                'heal_player': `
-                    local ped = PlayerPedId()
-                    SetEntityHealth(ped, 200)
-                    SetPedArmour(ped, 100)
-                `,
-                'spawn_vehicle': `
-                    local model = GetHashKey("adder")
-                    RequestModel(model)
-                    while not HasModelLoaded(model) do
-                        Wait(500)
-                    end
-                    local ped = PlayerPedId()
-                    local coords = GetEntityCoords(ped)
-                    local vehicle = CreateVehicle(model, coords.x + 3, coords.y, coords.z, 0.0, true, false)
-                `,
-                'teleport_waypoint': `
-                    local waypoint = GetFirstBlipInfoId(8)
-                    if waypoint ~= 0 then
-                        local coords = GetBlipInfoIdCoord(waypoint)
-                        local ped = PlayerPedId()
-                        SetEntityCoords(ped, coords.x, coords.y, coords.z + 1.0)
-                    end
-                `
-            };
-
-            const luaCode = codeMap[command];
-            if (luaCode) {
-                // محاكاة تنفيذ في RedEngine
-                console.log('تنفيذ كود Lua:', luaCode);
-                
-                // هنا ستضع الكود الفعلي لـ RedEngine execution
-                // مثال: RedEngine.execute(luaCode);
-            }
-        }
-
-        // تحديث الواجهة كل ثانية
-        setInterval(() => {
-            console.log('Menu Active - NoClip:', noclipActive, 'God Mode:', godModeActive);
-        }, 1000);
-    </script>
+  <div id="menu">
+    <h3>🚀 منيو التجربة</h3>
+    <p>هذا منيو بسيط طالع فوق يسار.</p>
+  </div>
 </body>
 </html>
