@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: transparent;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,11 +18,10 @@
             color: white;
             cursor: default;
         }
-
         .menu-container {
             position: absolute;
-            top: 50px;
-            left: 50px;
+            top: 10px;
+            left: 10px;
             width: 320px;
             background: rgba(15, 20, 25, 0.98);
             border-radius: 12px;
@@ -31,26 +29,18 @@
             box-shadow: 0 0 30px rgba(100, 255, 180, 0.4);
             overflow: hidden;
             animation: slideIn 0.4s ease-out;
+            display: none;
         }
-
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
-
         .menu-header {
             background: linear-gradient(135deg, rgba(100, 255, 180, 0.95), rgba(80, 200, 150, 0.95));
             padding: 22px;
             text-align: center;
             position: relative;
         }
-
         .menu-title {
             font-size: 32px;
             font-weight: bold;
@@ -59,18 +49,15 @@
             color: #ffffff;
             margin-bottom: 2px;
         }
-
         .menu-subtitle {
             font-size: 13px;
             opacity: 0.9;
             color: #e8f5e8;
             letter-spacing: 1px;
         }
-
         .menu-items {
             padding: 0;
         }
-
         .menu-item {
             display: flex;
             align-items: center;
@@ -82,11 +69,9 @@
             position: relative;
             user-select: none;
         }
-
         .menu-item:last-child {
             border-bottom: none;
         }
-
         .menu-item:hover,
         .menu-item.selected {
             background: linear-gradient(90deg, rgba(100, 255, 180, 0.25), rgba(100, 255, 180, 0.08));
@@ -95,7 +80,6 @@
             transform: translateX(6px);
             box-shadow: inset 0 0 20px rgba(100, 255, 180, 0.15);
         }
-
         .menu-item .icon {
             width: 22px;
             height: 22px;
@@ -107,13 +91,11 @@
             align-items: center;
             justify-content: center;
         }
-
         .menu-item:hover .icon,
         .menu-item.selected .icon {
             opacity: 1;
             transform: scale(1.15);
         }
-
         .menu-item .text {
             flex: 1;
             font-size: 15px;
@@ -121,26 +103,22 @@
             color: #e5e5e5;
             transition: all 0.3s ease;
         }
-
         .menu-item:hover .text,
         .menu-item.selected .text {
             color: #ffffff;
             font-weight: 600;
         }
-
         .menu-item .arrow {
             font-size: 17px;
             color: rgba(100, 255, 180, 0.75);
             transition: all 0.3s ease;
             font-weight: bold;
         }
-
         .menu-item:hover .arrow,
         .menu-item.selected .arrow {
             color: #64ffb4;
             transform: translateX(4px) scale(1.2);
         }
-
         .menu-footer {
             background: rgba(8, 12, 18, 0.95);
             padding: 14px 22px;
@@ -151,18 +129,14 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .menu-footer .version {
             color: #64ffb4;
             font-weight: bold;
         }
-
         .menu-footer .counter {
             color: #64ffb4;
             font-weight: bold;
         }
-
-        /* Selection indicator */
         .menu-item.selected::before {
             content: '';
             position: absolute;
@@ -173,32 +147,16 @@
             background: linear-gradient(180deg, #64ffb4, #50c878);
             border-radius: 0 3px 3px 0;
         }
-
-        /* Click animation */
         .menu-item.clicked {
             animation: clickEffect 0.4s ease;
         }
-
         @keyframes clickEffect {
-            0% { 
-                transform: translateX(6px) scale(1); 
-                background: linear-gradient(90deg, rgba(100, 255, 180, 0.25), rgba(100, 255, 180, 0.08));
-            }
-            50% { 
-                transform: translateX(12px) scale(1.05); 
-                background: rgba(100, 255, 180, 0.4);
-            }
-            100% { 
-                transform: translateX(6px) scale(1); 
-                background: linear-gradient(90deg, rgba(100, 255, 180, 0.25), rgba(100, 255, 180, 0.08));
-            }
+            0% { transform: translateX(6px) scale(1); background: linear-gradient(90deg, rgba(100, 255, 180, 0.25), rgba(100, 255, 180, 0.08)); }
+            50% { transform: translateX(12px) scale(1.05); background: rgba(100, 255, 180, 0.4); }
+            100% { transform: translateX(6px) scale(1); background: linear-gradient(90deg, rgba(100, 255, 180, 0.25), rgba(100, 255, 180, 0.08)); }
         }
-
-        /* Glow effect on hover */
         .menu-item:hover {
-            box-shadow: 
-                inset 0 0 20px rgba(100, 255, 180, 0.15),
-                0 0 15px rgba(100, 255, 180, 0.2);
+            box-shadow: inset 0 0 20px rgba(100, 255, 180, 0.15), 0 0 15px rgba(100, 255, 180, 0.2);
         }
     </style>
 </head>
@@ -208,9 +166,8 @@
             <div class="menu-title">AURA</div>
             <div class="menu-subtitle">MENU SYSTEM</div>
         </div>
-
         <div class="menu-items">
-            <div class="menu-item selected" data-index="0" data-action="self">
+            <div class="menu-item" data-index="0" data-action="self">
                 <div class="icon">👤</div>
                 <div class="text">Self</div>
                 <div class="arrow">»</div>
@@ -230,7 +187,7 @@
                 <div class="text">Visual</div>
                 <div class="arrow">»</div>
             </div>
-            <div class="menu-item" data-index="4" data-action="vehicle">
+            <div class="menu-item selected" data-index="4" data-action="vehicle">
                 <div class="icon">🚗</div>
                 <div class="text">Vehicle</div>
                 <div class="arrow">»</div>
@@ -256,88 +213,77 @@
                 <div class="arrow">»</div>
             </div>
         </div>
-
         <div class="menu-footer">
             <span>Version: <span class="version">v1.0</span> | Aura System</span>
-            <span class="counter">1/9</span>
+            <span class="counter">5/9</span>
         </div>
     </div>
-
     <script>
         let currentIndex = 0;
         const menuItems = document.querySelectorAll('.menu-item');
         const maxIndex = menuItems.length - 1;
 
+        function sendNuiMessage(data) {
+            fetch(`https://${GetParentResourceName()}/menuAction`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(err => console.error('NUI Error:', err));
+        }
+
         function updateSelection() {
-            // إزالة التحديد من جميع العناصر
             menuItems.forEach(item => item.classList.remove('selected'));
-            
-            // إضافة التحديد للعنصر الحالي
             menuItems[currentIndex].classList.add('selected');
-            
-            // تحديث العداد
             document.querySelector('.counter').textContent = `${currentIndex + 1}/9`;
-            
-            // تمرير العنصر للعرض
-            menuItems[currentIndex].scrollIntoView({ 
-                behavior: 'smooth', 
-                block: 'nearest' 
-            });
+            menuItems[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
         function selectItem() {
             const selectedItem = menuItems[currentIndex];
             const action = selectedItem.dataset.action;
             const itemText = selectedItem.querySelector('.text').textContent;
-            
-            console.log(`🎯 Selected: ${itemText} (${action})`);
-            
-            // إضافة تأثير النقر
+
+            sendNuiMessage({
+                action: 'select',
+                item: action,
+                name: itemText
+            });
+
             selectedItem.classList.add('clicked');
-            setTimeout(() => {
-                selectedItem.classList.remove('clicked');
-            }, 400);
-            
-            // هنا يمكنك إضافة المزيد من الوظائف
-            alert(`Selected: ${itemText}`);
+            setTimeout(() => selectedItem.classList.remove('clicked'), 400);
         }
 
-        // التحكم بالكيبورد
+        // ضمان التركيز على المنيو
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.focus();
+        });
+
         document.addEventListener('keydown', function(e) {
+            e.preventDefault();
             switch(e.key) {
                 case 'ArrowUp':
-                    e.preventDefault();
                     currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
                     updateSelection();
                     break;
-                    
                 case 'ArrowDown':
-                    e.preventDefault();
                     currentIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
                     updateSelection();
                     break;
-                    
                 case 'Enter':
                 case ' ':
-                    e.preventDefault();
                     selectItem();
                     break;
-                    
                 case 'Escape':
-                    e.preventDefault();
-                    console.log('Menu closed with ESC');
-                    // يمكن إخفاء المنيو هنا
+                    sendNuiMessage({ action: 'close' });
                     break;
             }
         });
 
-        // دعم الماوس
         menuItems.forEach((item, index) => {
             item.addEventListener('mouseenter', () => {
                 currentIndex = index;
                 updateSelection();
             });
-            
             item.addEventListener('click', () => {
                 currentIndex = index;
                 updateSelection();
@@ -345,11 +291,17 @@
             });
         });
 
-        // تهيئة المنيو
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            if (data.type === 'showMenu') {
+                document.querySelector('.menu-container').style.display = 'block';
+                document.body.focus(); // ضمان التركيز عند الإظهار
+            } else if (data.type === 'hideMenu') {
+                document.querySelector('.menu-container').style.display = 'none';
+            }
+        });
+
         updateSelection();
-        
-        console.log('🌟 Aura Menu loaded successfully');
-        console.log('📋 Use arrow keys to navigate, Enter to select');
     </script>
 </body>
 </html>
