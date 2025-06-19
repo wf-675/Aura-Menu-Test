@@ -20,8 +20,8 @@
         }
         .menu-container {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 50px;
+            left: 50px;
             width: 320px;
             background: rgba(15, 20, 25, 0.98);
             border-radius: 12px;
@@ -253,7 +253,6 @@
             setTimeout(() => selectedItem.classList.remove('clicked'), 400);
         }
 
-        // ضمان التركيز على المنيو
         document.addEventListener('DOMContentLoaded', () => {
             document.body.focus();
         });
@@ -295,7 +294,7 @@
             const data = event.data;
             if (data.type === 'showMenu') {
                 document.querySelector('.menu-container').style.display = 'block';
-                document.body.focus(); // ضمان التركيز عند الإظهار
+                document.body.focus();
             } else if (data.type === 'hideMenu') {
                 document.querySelector('.menu-container').style.display = 'none';
             }
