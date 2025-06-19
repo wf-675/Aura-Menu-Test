@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lean Menu</title>
+    <title>Aura Menu</title>
     <style>
         * {
             margin: 0;
@@ -186,10 +186,15 @@
             border-radius: 0 3px 3px 0;
         }
 
-        /* Smooth focus effect */
-        .menu-item:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(100, 255, 180, 0.5);
+        /* Click animation */
+        .menu-item.clicked {
+            animation: clickPulse 0.3s ease;
+        }
+
+        @keyframes clickPulse {
+            0% { transform: translateX(8px) scale(1); }
+            50% { transform: translateX(15px) scale(1.05); background: rgba(100, 255, 180, 0.3); }
+            100% { transform: translateX(8px) scale(1); }
         }
     </style>
 </head>
@@ -197,7 +202,7 @@
     <div id="menu-overlay">
         <div class="menu-container">
             <div class="menu-header">
-                <div class="menu-title">LEAN</div>
+                <div class="menu-title">AURA</div>
                 <div class="menu-subtitle">MENU</div>
             </div>
 
@@ -250,35 +255,33 @@
             </div>
 
             <div class="menu-footer">
-                <span>Version: <span class="version">Beta</span> | 24hrs ago (pls report bugs)</span>
+                <span>Version: <span class="version">v1.0</span> | Aura Menu System</span>
                 <span class="counter">1/9</span>
             </div>
         </div>
     </div>
 
     <script>
+        // Menu state
         let currentIndex = 0;
+        let menuVisible = false;
         const menuItems = document.querySelectorAll('.menu-item');
         const maxIndex = menuItems.length - 1;
         const menuOverlay = document.getElementById('menu-overlay');
 
+        // Update selection visual
         function updateSelection() {
-            // Remove selection from all items
             menuItems.forEach(item => item.classList.remove('selected'));
-            
-            // Add selection to current item
             menuItems[currentIndex].classList.add('selected');
-            
-            // Update footer counter
             document.querySelector('.counter').textContent = `${currentIndex + 1}/9`;
             
-            // Scroll item into view
             menuItems[currentIndex].scrollIntoView({ 
                 behavior: 'smooth', 
                 block: 'nearest' 
             });
         }
 
+        // Handle item selection
         function selectItem() {
             const selectedItem = menuItems[currentIndex];
             const action = selectedItem.dataset.action;
@@ -286,44 +289,47 @@
             
             console.log(`Selected: ${itemText} (${action})`);
             
-            // Add selection animation
-            selectedItem.style.transform = 'translateX(15px) scale(1.05)';
-            selectedItem.style.backgroundColor = 'rgba(100, 255, 180, 0.3)';
-            
+            // Add click animation
+            selectedItem.classList.add('clicked');
             setTimeout(() => {
-                selectedItem.style.transform = '';
-                selectedItem.style.backgroundColor = '';
+                selectedItem.classList.remove('clicked');
             }, 300);
             
-            // Send to Lua
-            fetch('https://cfx-nui-callback/menuAction', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
+            // Send selection to Lua (for DUI communication)
+            if (window.parent && window.parent.postMessage) {
+                window.parent.postMessage({
+                    type: 'menuAction',
                     action: 'select',
                     item: action,
                     name: itemText,
                     index: currentIndex
-                })
-            }).catch(() => {
-                console.log('Selected:', itemText);
+                }, '*');
+            }
+            
+            // Log for debugging
+            console.log('Menu action sent:', {
+                action: 'select',
+                item: action,
+                name: itemText
             });
         }
 
+        // Close menu
         function closeMenu() {
-            fetch('https://cfx-nui-callback/menuAction', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
+            if (window.parent && window.parent.postMessage) {
+                window.parent.postMessage({
+                    type: 'menuAction',
                     action: 'close'
-                })
-            }).catch(() => {
-                console.log('Menu close requested');
-            });
+                }, '*');
+            }
+            
+            console.log('Menu close requested');
         }
 
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
+            if (!menuVisible) return;
+            
             switch(e.key) {
                 case 'ArrowUp':
                     e.preventDefault();
@@ -354,34 +360,74 @@
         // Mouse support
         menuItems.forEach((item, index) => {
             item.addEventListener('mouseenter', () => {
+                if (!menuVisible) return;
                 currentIndex = index;
                 updateSelection();
             });
             
             item.addEventListener('click', () => {
+                if (!menuVisible) return;
                 currentIndex = index;
                 updateSelection();
                 setTimeout(selectItem, 100);
             });
         });
 
-        // NUI Message handler
+        // Listen for messages from Lua/DUI
         window.addEventListener('message', function(event) {
             const data = event.data;
             
             if (data.type === 'showMenu') {
                 menuOverlay.style.display = 'flex';
+                menuVisible = true;
                 updateSelection();
-                console.log('Lean Menu opened');
+                console.log('Aura Menu opened');
+                
             } else if (data.type === 'hideMenu') {
                 menuOverlay.style.display = 'none';
-                console.log('Lean Menu closed');
+                menuVisible = false;
+                console.log('Aura Menu closed');
             }
         });
 
-        // Initialize
+        // Handle postMessage from parent (DUI)
+        if (window.addEventListener) {
+            window.addEventListener('message', function(e) {
+                try {
+                    const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+                    
+                    if (data.type === 'showMenu') {
+                        menuOverlay.style.display = 'flex';
+                        menuVisible = true;
+                        updateSelection();
+                        console.log('Menu shown via postMessage');
+                        
+                    } else if (data.type === 'hideMenu') {
+                        menuOverlay.style.display = 'none';
+                        menuVisible = false;
+                        console.log('Menu hidden via postMessage');
+                    }
+                } catch (err) {
+                    // Ignore parsing errors
+                }
+            }, false);
+        }
+
+        // Initialize menu
         updateSelection();
-        console.log('Interactive Lean Menu loaded');
+        
+        // Auto-show for testing (remove in production)
+        setTimeout(() => {
+            if (!menuVisible) {
+                menuOverlay.style.display = 'flex';
+                menuVisible = true;
+                updateSelection();
+                console.log('Menu auto-shown for testing');
+            }
+        }, 1000);
+
+        console.log('Aura Menu System loaded and ready');
+        console.log('Use arrow keys to navigate, Enter to select, ESC/Home to close');
     </script>
 </body>
 </html>
