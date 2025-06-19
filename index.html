@@ -17,56 +17,82 @@
             overflow: hidden;
             height: 100vh;
             color: white;
+            cursor: default;
+        }
+
+        #menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            display: none;
+            justify-content: flex-start;
+            align-items: flex-start;
+            z-index: 1000;
         }
 
         .menu-container {
-            position: absolute;
-            top: 50px;
-            left: 50px;
+            margin: 50px;
             width: 350px;
-            background: rgba(20, 25, 30, 0.95);
+            background: rgba(20, 25, 30, 0.98);
             border-radius: 12px;
-            border: 1px solid rgba(100, 255, 180, 0.3);
-            box-shadow: 0 0 25px rgba(100, 255, 180, 0.2);
+            border: 1px solid rgba(100, 255, 180, 0.4);
+            box-shadow: 0 0 30px rgba(100, 255, 180, 0.3);
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            animation: slideInLeft 0.4s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .menu-header {
-            background: linear-gradient(135deg, rgba(100, 255, 180, 0.8), rgba(80, 200, 150, 0.8));
-            padding: 15px;
+            background: linear-gradient(135deg, rgba(100, 255, 180, 0.9), rgba(80, 200, 150, 0.9));
+            padding: 20px;
             text-align: center;
             position: relative;
         }
 
         .menu-title {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: bold;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
             color: #ffffff;
         }
 
         .menu-subtitle {
-            font-size: 12px;
+            font-size: 14px;
             opacity: 0.9;
             margin-top: 5px;
             color: #e0e0e0;
+            letter-spacing: 1px;
         }
 
         .menu-items {
-            padding: 10px 0;
+            padding: 0;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 20px;
-            border-bottom: 1px solid rgba(40, 50, 60, 0.8);
+            padding: 16px 24px;
+            border-bottom: 1px solid rgba(40, 50, 60, 0.6);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            user-select: none;
         }
 
         .menu-item:last-child {
@@ -75,28 +101,34 @@
 
         .menu-item:hover,
         .menu-item.selected {
-            background: linear-gradient(90deg, rgba(100, 255, 180, 0.15), rgba(100, 255, 180, 0.05));
-            border-left: 3px solid #64ffb4;
-            padding-left: 17px;
-            transform: translateX(5px);
+            background: linear-gradient(90deg, rgba(100, 255, 180, 0.2), rgba(100, 255, 180, 0.1));
+            border-left: 4px solid #64ffb4;
+            padding-left: 20px;
+            transform: translateX(8px);
+            box-shadow: inset 0 0 25px rgba(100, 255, 180, 0.1);
         }
 
         .menu-item .icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 12px;
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
             opacity: 0.8;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .menu-item:hover .icon,
         .menu-item.selected .icon {
             opacity: 1;
+            transform: scale(1.1);
         }
 
         .menu-item .text {
             flex: 1;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
             color: #e0e0e0;
             transition: color 0.3s ease;
@@ -105,25 +137,27 @@
         .menu-item:hover .text,
         .menu-item.selected .text {
             color: #ffffff;
+            font-weight: 600;
         }
 
         .menu-item .arrow {
-            font-size: 16px;
+            font-size: 18px;
             color: rgba(100, 255, 180, 0.7);
             transition: all 0.3s ease;
+            font-weight: bold;
         }
 
         .menu-item:hover .arrow,
         .menu-item.selected .arrow {
             color: #64ffb4;
-            transform: translateX(3px);
+            transform: translateX(5px) scale(1.2);
         }
 
         .menu-footer {
-            background: rgba(15, 20, 25, 0.9);
-            padding: 12px 20px;
-            font-size: 11px;
-            color: #888;
+            background: rgba(15, 20, 25, 0.95);
+            padding: 15px 24px;
+            font-size: 12px;
+            color: #999;
             border-top: 1px solid rgba(40, 50, 60, 0.8);
             display: flex;
             justify-content: space-between;
@@ -132,22 +166,12 @@
 
         .menu-footer .version {
             color: #64ffb4;
+            font-weight: bold;
         }
 
-        /* Smooth animations */
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .menu-container {
-            animation: slideIn 0.4s ease-out;
+        .menu-footer .counter {
+            color: #64ffb4;
+            font-weight: bold;
         }
 
         /* Selection indicator */
@@ -157,75 +181,78 @@
             left: 0;
             top: 0;
             bottom: 0;
-            width: 3px;
+            width: 4px;
             background: linear-gradient(180deg, #64ffb4, #50c878);
-            border-radius: 0 2px 2px 0;
+            border-radius: 0 3px 3px 0;
         }
 
-        /* Glow effect for selected item */
-        .menu-item.selected {
-            box-shadow: inset 0 0 20px rgba(100, 255, 180, 0.1);
+        /* Smooth focus effect */
+        .menu-item:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(100, 255, 180, 0.5);
         }
     </style>
 </head>
 <body>
-    <div class="menu-container">
-        <div class="menu-header">
-            <div class="menu-title">LEAN</div>
-            <div class="menu-subtitle">MENU</div>
-        </div>
+    <div id="menu-overlay">
+        <div class="menu-container">
+            <div class="menu-header">
+                <div class="menu-title">LEAN</div>
+                <div class="menu-subtitle">MENU</div>
+            </div>
 
-        <div class="menu-items">
-            <div class="menu-item selected" data-index="0">
-                <div class="icon">👤</div>
-                <div class="text">Self</div>
-                <div class="arrow">»</div>
+            <div class="menu-items">
+                <div class="menu-item selected" data-index="0" data-action="self">
+                    <div class="icon">👤</div>
+                    <div class="text">Self</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="1" data-action="online">
+                    <div class="icon">🌐</div>
+                    <div class="text">Online</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="2" data-action="combat">
+                    <div class="icon">⚔️</div>
+                    <div class="text">Combat/Weapons</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="3" data-action="visual">
+                    <div class="icon">👁️</div>
+                    <div class="text">Visual</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="4" data-action="vehicle">
+                    <div class="icon">🚗</div>
+                    <div class="text">Vehicle</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="5" data-action="misc">
+                    <div class="icon">📂</div>
+                    <div class="text">Miscellaneous</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="6" data-action="destructive">
+                    <div class="icon">💥</div>
+                    <div class="text">Destructive</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="7" data-action="triggers">
+                    <div class="icon">⚡</div>
+                    <div class="text">Triggers</div>
+                    <div class="arrow">»</div>
+                </div>
+                <div class="menu-item" data-index="8" data-action="settings">
+                    <div class="icon">⚙️</div>
+                    <div class="text">Settings</div>
+                    <div class="arrow">»</div>
+                </div>
             </div>
-            <div class="menu-item" data-index="1">
-                <div class="icon">🌐</div>
-                <div class="text">Online</div>
-                <div class="arrow">»</div>
-            </div>
-            <div class="menu-item" data-index="2">
-                <div class="icon">⚔️</div>
-                <div class="text">Combat/Weapons</div>
-                <div class="arrow">»</div>
-            </div>
-            <div class="menu-item" data-index="3">
-                <div class="icon">👁️</div>
-                <div class="text">Visual</div>
-                <div class="arrow">»</div>
-            </div>
-            <div class="menu-item" data-index="4">
-                <div class="icon">🚗</div>
-                <div class="text">Vehicle</div>
-                <div class="arrow">»</div>
-            </div>
-            <div class="menu-item" data-index="5">
-                <div class="icon">📂</div>
-                <div class="text">Miscellaneous</div>
-                <div class="arrow">»</div>
-            </div>
-            <div class="menu-item" data-index="6">
-                <div class="icon">💥</div>
-                <div class="text">Destructive</div>
-                <div class="arrow">»</div>
-            </div>
-            <div class="menu-item" data-index="7">
-                <div class="icon">⚡</div>
-                <div class="text">Triggers</div>
-                <div class="arrow">»</div>
-            </div>
-            <div class="menu-item" data-index="8">
-                <div class="icon">⚙️</div>
-                <div class="text">Settings</div>
-                <div class="arrow">»</div>
-            </div>
-        </div>
 
-        <div class="menu-footer">
-            <span>Version: <span class="version">Beta</span> | 24hrs ago (pls report bugs)</span>
-            <span>1/9</span>
+            <div class="menu-footer">
+                <span>Version: <span class="version">Beta</span> | 24hrs ago (pls report bugs)</span>
+                <span class="counter">1/9</span>
+            </div>
         </div>
     </div>
 
@@ -233,6 +260,7 @@
         let currentIndex = 0;
         const menuItems = document.querySelectorAll('.menu-item');
         const maxIndex = menuItems.length - 1;
+        const menuOverlay = document.getElementById('menu-overlay');
 
         function updateSelection() {
             // Remove selection from all items
@@ -242,9 +270,9 @@
             menuItems[currentIndex].classList.add('selected');
             
             // Update footer counter
-            document.querySelector('.menu-footer span:last-child').textContent = `${currentIndex + 1}/9`;
+            document.querySelector('.counter').textContent = `${currentIndex + 1}/9`;
             
-            // Scroll item into view if needed
+            // Scroll item into view
             menuItems[currentIndex].scrollIntoView({ 
                 behavior: 'smooth', 
                 block: 'nearest' 
@@ -253,18 +281,45 @@
 
         function selectItem() {
             const selectedItem = menuItems[currentIndex];
+            const action = selectedItem.dataset.action;
             const itemText = selectedItem.querySelector('.text').textContent;
             
-            console.log(`Selected: ${itemText}`);
+            console.log(`Selected: ${itemText} (${action})`);
             
-            // Add click animation
-            selectedItem.style.transform = 'translateX(10px) scale(1.02)';
+            // Add selection animation
+            selectedItem.style.transform = 'translateX(15px) scale(1.05)';
+            selectedItem.style.backgroundColor = 'rgba(100, 255, 180, 0.3)';
+            
             setTimeout(() => {
                 selectedItem.style.transform = '';
-            }, 200);
+                selectedItem.style.backgroundColor = '';
+            }, 300);
             
-            // You can add more functionality here
-            // For example, send message to Lua script
+            // Send to Lua
+            fetch('https://cfx-nui-callback/menuAction', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'select',
+                    item: action,
+                    name: itemText,
+                    index: currentIndex
+                })
+            }).catch(() => {
+                console.log('Selected:', itemText);
+            });
+        }
+
+        function closeMenu() {
+            fetch('https://cfx-nui-callback/menuAction', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'close'
+                })
+            }).catch(() => {
+                console.log('Menu close requested');
+            });
         }
 
         // Keyboard navigation
@@ -289,9 +344,9 @@
                     break;
                     
                 case 'Escape':
+                case 'Home':
                     e.preventDefault();
-                    console.log('Menu closed');
-                    // Hide menu or send close signal
+                    closeMenu();
                     break;
             }
         });
@@ -304,14 +359,29 @@
             });
             
             item.addEventListener('click', () => {
-                selectItem();
+                currentIndex = index;
+                updateSelection();
+                setTimeout(selectItem, 100);
             });
+        });
+
+        // NUI Message handler
+        window.addEventListener('message', function(event) {
+            const data = event.data;
+            
+            if (data.type === 'showMenu') {
+                menuOverlay.style.display = 'flex';
+                updateSelection();
+                console.log('Lean Menu opened');
+            } else if (data.type === 'hideMenu') {
+                menuOverlay.style.display = 'none';
+                console.log('Lean Menu closed');
+            }
         });
 
         // Initialize
         updateSelection();
-
-        console.log('Lean Menu loaded - Use arrow keys to navigate');
+        console.log('Interactive Lean Menu loaded');
     </script>
 </body>
 </html>
