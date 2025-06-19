@@ -255,10 +255,12 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             document.body.focus();
+            console.log('🌟 Menu initialized, body focused');
         });
 
         document.addEventListener('keydown', function(e) {
             e.preventDefault();
+            console.log('Key pressed:', e.key); // تسجيل المفاتيح للتصحيح
             switch(e.key) {
                 case 'ArrowUp':
                     currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
@@ -292,11 +294,14 @@
 
         window.addEventListener('message', function(event) {
             const data = event.data;
+            console.log('Received message:', data); // تسجيل الرسائل للتصحيح
             if (data.type === 'showMenu') {
                 document.querySelector('.menu-container').style.display = 'block';
                 document.body.focus();
+                console.log('✅ Menu shown, body focused');
             } else if (data.type === 'hideMenu') {
                 document.querySelector('.menu-container').style.display = 'none';
+                console.log('✅ Menu hidden');
             }
         });
 
