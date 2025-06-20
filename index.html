@@ -11,6 +11,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* للتأكد من سلاسة الخطوط والعناصر */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         html, body {
@@ -20,7 +24,7 @@
             height: 100%;
             background-color: transparent !important;
             overflow: hidden;
-            /* استخدام Oxanium للعنوان والبنود الرئيسية، و Roboto للنصوص الأخرى إذا لزم الأمر */
+            /* الخط الرئيسي للمنيو */
             font-family: 'Oxanium', sans-serif;
         }
 
@@ -28,25 +32,24 @@
             color: #E0E0E0; /* لون نص فاتح قليلاً */
             cursor: default;
             display: flex;
-            justify-content: flex-start; /* يضعها في اليسار */
-            align-items: center;
-            padding-left: 30px; /* المسافة من اليسار */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
+            /* لجعل المنيو في أعلى اليسار */
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 20px; /* تباعد عن الحواف (يمكن ضبطه ليتناسب مع الصورة) */
             background-color: transparent !important;
         }
 
         /* حاوية القائمة الرئيسية */
         .menu-container {
-            width: 560px; /* عرض مصمم أصلاً */
-            height: 540px; /* ارتفاع مصمم أصلاً */
+            width: 380px; /* **تعديل:** عرض المنيو ليكون أضيق (بالبيكسل في HTML) */
+            height: auto; /* الارتفاع يتحدد تلقائياً حسب المحتوى */
+            min-height: 620px; /* **تعديل:** الحد الأدنى للارتفاع لجعله أطول */
             background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة صلبة */
             border-radius: 10px; /* حواف أقل استدارة */
-            border: 1px solid #20B2AA; /* لون حدود أخضر مائي/نيون */
+            border: 1px solid #10B981; /* لون حدود أخضر نيون داكن قليلاً (أغمق من الصورة السابقة) */
             box-shadow:
-                0 0 20px rgba(32, 178, 170, 0.5), /* ظل نيون أخضر حول القائمة */
-                inset 0 0 10px rgba(32, 178, 170, 0.2);
+                0 0 20px rgba(16, 185, 129, 0.5), /* ظل نيون أخضر حول القائمة */
+                inset 0 0 10px rgba(16, 185, 129, 0.2);
             overflow: hidden;
             animation: menuSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
@@ -55,7 +58,7 @@
         }
 
         .menu-container::before {
-            display: none !important; /* إخفاء الشاين الأصلي إذا كان يسبب مشاكل */
+            display: none !important;
         }
 
         @keyframes menuSlideIn {
@@ -74,32 +77,32 @@
         /* رأس القائمة */
         .menu-header {
             width: 100%;
-            height: 150px; /* ارتفاع مخصص لرأس القائمة حسب الصورة */
+            height: 120px; /* **تعديل:** ارتفاع مخصص لرأس القائمة حسب الصورة */
             background-image: url('https://i.imgur.com/your_lean_menu_image.png'); /* **ضع رابط صورتك هنا** */
-            background-size: cover; /* لملء المساحة */
-            background-position: center; /* لتركيز الصورة */
+            background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
-            border-bottom: 1px solid #20B2AA; /* حدود نيون */
+            border-bottom: 1px solid #10B981; /* حدود نيون مطابقة للمنيو */
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
-            display: flex; /* لجعل النص "HOME" في المنتصف */
+            display: flex;
             justify-content: center;
-            align-items: flex-end; /* لجعله في الأسفل */
-            padding-bottom: 10px; /* تباعد عن الأسفل */
+            align-items: flex-end;
+            padding-bottom: 8px; /* تباعد عن الأسفل */
         }
 
-        /* إزالة العنوان والوصف من الهيدر الأصلي */
+        /* إخفاء العنوان والوصف الأصليين */
         .menu-title, .menu-subtitle {
             display: none;
         }
 
         .header-text {
-            color: #E0E0E0; /* لون نص فاتح */
-            font-size: 20px;
+            color: #E0E0E0;
+            font-size: 18px; /* **تعديل:** حجم خط "HOME" أصغر قليلاً */
             font-weight: 700;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(32, 178, 170, 0.8);
+            letter-spacing: 1px; /* تباعد أحرف أقل */
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.8); /* ظل نيون أخضر لرأس القائمة */
             text-transform: uppercase;
         }
 
@@ -114,20 +117,20 @@
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 8px 30px; /* تباعدات ضيقة ومناسبة */
-            border-bottom: 1px solid rgba(32, 178, 170, 0.1); /* حدود نيون فاتحة */
+            padding: 10px 25px; /* **تعديل:** تباعدات ضيقة ومناسبة جداً للصورة */
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1); /* حدود نيون فاتحة جداً */
             cursor: pointer;
-            transition: all 0.2s ease-in-out; /* سرعة انتقال أسرع */
+            transition: background-color 0.15s ease-in-out, border-left 0.15s ease-in-out, transform 0.15s ease-in-out; /* انتقال أسرع */
             position: relative;
             user-select: none;
             background-color: transparent !important;
-            min-height: 38px; /* ارتفاع أقل للبنود */
+            min-height: 45px; /* **تعديل:** ارتفاع البنود ليتناسب مع الصورة */
             overflow: hidden;
             width: 100%;
         }
 
         .menu-item::before {
-            display: none; /* إزالة تأثير الشاين عند المرور فوقه */
+            display: none;
         }
 
         .menu-item:last-child {
@@ -135,62 +138,61 @@
         }
 
         .menu-item.selected {
-            background-color: rgba(32, 178, 170, 0.2); /* خلفية خضراء نيون شفافة عند التحديد */
-            border-left: 4px solid #20B2AA; /* حدود نيون على اليسار */
-            padding-left: 28px; /* تعويض المسافة بسبب الحدود */
-            transform: translateX(0); /* إزالة الانزلاق */
-            box-shadow: inset 0 0 15px rgba(32, 178, 170, 0.3); /* ظل داخلي نيون */
+            background-color: #2D3A3B; /* **تعديل:** لون خلفية العنصر المحدد كما في الصورة */
+            border-left: 4px solid #32CD32; /* **تعديل:** حدود خضراء نيون أفتح (ليمون) */
+            padding-left: 21px; /* تعويض المسافة بسبب الحدود */
+            transform: translateX(0);
+            box-shadow: none; /* إزالة الظل الداخلي */
         }
 
         .menu-item .icon {
-            width: 24px; /* أيقونات أصغر قليلاً */
-            height: 24px;
-            margin-right: 15px; /* مسافة أقل */
-            opacity: 0.8;
-            transition: all 0.2s ease-in-out;
-            font-size: 18px; /* حجم خط الأيقونات */
+            width: 28px; /* حجم أيقونة الايموجي كما في الصورة */
+            height: 28px;
+            margin-right: 15px; /* مسافة مناسبة */
+            opacity: 0.9;
+            transition: all 0.15s ease-in-out;
+            font-size: 22px; /* **تعديل:** حجم خط الايموجي */
             display: flex;
             align-items: center;
             justify-content: center;
-            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
             color: #E0E0E0; /* لون الأيقونة غير المحددة */
         }
 
         .menu-item.selected .icon {
             opacity: 1;
-            transform: scale(1.1); /* تكبير طفيف */
-            filter: drop-shadow(0 0 10px #20B2AA); /* ظل نيون أخضر */
-            color: #32CD32; /* لون أخضر نيون للأيقونة المحددة */
+            transform: scale(1.0); /* إزالة التكبير */
+            filter: drop-shadow(0 0 8px rgba(50, 205, 50, 0.8)); /* ظل نيون أخضر للأيقونة */
+            color: #32CD32; /* **تعديل:** لون أخضر ليموني نيون للأيقونة المحددة */
         }
 
         .menu-item .text {
             flex: 1;
-            font-size: 16px; /* حجم خط أصغر */
-            font-weight: 500; /* وزن خط متوسط */
-            color: #F0F0F0; /* لون نص فاتح */
-            transition: all 0.2s ease-in-out;
-            text-shadow: none; /* إزالة ظل النص */
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Roboto', sans-serif; /* **تعديل:** استخدام Roboto للنصوص داخل البنود */
+            font-size: 16px; /* حجم الخط */
+            font-weight: 500;
+            color: #E0E0E0; /* لون نص فاتح جداً */
+            transition: all 0.15s ease-in-out;
+            text-shadow: none;
         }
 
         .menu-item.selected .text {
             color: #FFFFFF; /* نص أبيض عند التحديد */
-            font-weight: 600; /* وزن خط أثقل عند التحديد */
-            text-shadow: 0 0 8px rgba(32, 178, 170, 0.8); /* ظل نيون للنص المحدد */
+            font-weight: 600;
+            text-shadow: none; /* إزالة الظل للنص المحدد */
         }
 
         .menu-item .arrow {
-            font-size: 14px; /* حجم أصغر */
-            color: #20B2AA; /* لون أخضر نيون للسهم */
-            transition: all 0.2s ease-in-out;
+            font-size: 14px;
+            color: #505050; /* **تعديل:** لون رمادي داكن للسهم */
+            transition: all 0.15s ease-in-out;
             font-weight: bold;
-            opacity: 0.7;
+            opacity: 1;
         }
 
         .menu-item.selected .arrow {
-            color: #32CD32; /* أخضر نيون أفتح عند التحديد */
-            transform: translateX(5px) scale(1.2); /* انزلاق وتكبير أقل */
+            color: #32CD32; /* **تعديل:** أخضر ليموني نيون عند التحديد */
+            transform: translateX(0); /* إزالة الانزلاق */
             filter: drop-shadow(0 0 6px #32CD32);
             opacity: 1;
         }
@@ -198,33 +200,31 @@
         /* تذييل القائمة */
         .menu-footer {
             background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة صلبة */
-            padding: 10px 30px; /* بادينغ أصغر */
+            padding: 8px 25px; /* **تعديل:** بادينغ أصغر ليتناسب مع الصورة */
+            font-family: 'Roboto', sans-serif; /* استخدام Roboto للفوتر */
             font-size: 11px; /* حجم خط أصغر */
             color: #909090; /* لون نص رمادي أغمق */
-            border-top: 1px solid rgba(32, 178, 170, 0.15); /* حدود نيون فاتحة */
+            border-top: 1px solid rgba(16, 185, 129, 0.15); /* حدود نيون فاتحة */
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 35px; /* ارتفاع أقل */
+            min-height: 30px; /* **تعديل:** ارتفاع أقل */
             flex-shrink: 0;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
         }
 
         .menu-footer .version {
-            color: #32CD32; /* لون أخضر نيون */
-            font-weight: 600;
-            text-shadow: 0 0 8px rgba(32, 178, 170, 0.5);
+            color: #909090; /* **تعديل:** لون رمادي مطابق للصورة */
+            font-weight: 400; /* وزن خط عادي */
+            text-shadow: none; /* إزالة الظل */
         }
 
         .menu-footer .counter {
-            color: #32CD32; /* لون أخضر نيون */
-            font-weight: 700;
+            color: #909090; /* **تعديل:** لون رمادي مطابق للصورة */
+            font-weight: 400;
             font-size: 11px;
-            padding: 4px 10px; /* بادينغ أصغر */
-            background-color: rgba(32, 178, 170, 0.1); /* خلفية نيون شفافة */
-            border-radius: 15px; /* استدارة أقل */
-            border: 1px solid rgba(32, 178, 170, 0.3);
+            padding: 0; /* إزالة البادينغ */
+            background-color: transparent; /* إزالة الخلفية */
+            border: none; /* إزالة الحدود */
         }
 
         /* إشعارات التفعيل */
@@ -239,15 +239,13 @@
         }
 
         .notification {
-            background: rgba(0, 0, 0, 0.85); /* خلفية إشعار داكنة */
-            border: 1px solid #20B2AA; /* حدود نيون */
+            background: #2D3A3B; /* لون خلفية الإشعار مطابق للبنود المحددة */
+            border: 1px solid #32CD32; /* حدود خضراء نيون */
             padding: 14px 20px;
-            border-radius: 8px; /* استدارة أقل */
+            border-radius: 8px;
             min-width: 280px;
             max-width: 350px;
-            box-shadow:
-                0 4px 15px rgba(0, 0, 0, 0.5),
-                0 0 10px rgba(32, 178, 170, 0.4); /* ظل نيون خفيف */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(50, 205, 50, 0.4);
             display: flex;
             align-items: center;
             animation: notificationSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
@@ -282,16 +280,16 @@
         }
 
         .notification-icon {
-            font-size: 24px; /* أيقونة إشعار أصغر */
+            font-size: 24px;
             margin-right: 10px;
-            color: #32CD32; /* لون أيقونة نيون */
+            color: #32CD32;
             filter: drop-shadow(0 0 6px #32CD32);
             animation: iconPulse 1.5s infinite ease-in-out;
         }
 
         @keyframes iconPulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); } /* نبض أقل حدة */
+            50% { transform: scale(1.1); }
         }
 
         .notification-text {
@@ -299,28 +297,26 @@
         }
 
         .notification-title {
-            font-size: 16px; /* حجم خط أصغر */
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
             font-weight: 700;
-            color: #FFFFFF; /* لون أبيض */
-            text-shadow: 0 0 8px rgba(32, 178, 170, 0.6);
-            margin-bottom: 2px; /* مسافة أقل */
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
+            color: #FFFFFF;
+            text-shadow: none;
+            margin-bottom: 2px;
         }
 
         .notification-message {
-            font-size: 14px; /* حجم خط أصغر */
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
             font-weight: 500;
-            color: #E0E0E0; /* لون فاتح */
+            color: #E0E0E0;
             text-shadow: none;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
         }
 
         .notification-timer {
             width: 100%;
-            height: 3px; /* شريط أقل ارتفاعاً */
-            background: #32CD32; /* لون نيون صلب */
+            height: 3px;
+            background: #32CD32;
             position: absolute;
             bottom: 0;
             left: 0;
@@ -341,7 +337,8 @@
 
         <div class="menu-items">
             <div class="menu-item" data-index="0" data-action="self">
-                <div class="icon">👤</div> <div class="text">Self</div>
+                <div class="icon">👤</div>
+                <div class="text">Self</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="1" data-action="online">
@@ -359,7 +356,7 @@
                 <div class="text">Visual</div>
                 <div class="arrow">»</div>
             </div>
-            <div class="menu-item selected" data-index="4" data-action="vehicle">
+            <div class="menu-item" data-index="4" data-action="vehicle">
                 <div class="icon">🚗</div>
                 <div class="text">Vehicle</div>
                 <div class="arrow">»</div>
@@ -388,17 +385,16 @@
 
         <div class="menu-footer">
             <span class="version">Version: Beta | 24hrs ago (pls report bugs)</span>
-            <span class="counter">5/9</span>
-        </div>
+            <span class="counter">1/9</span> </div>
     </div>
 
     <div class="notification-container" id="notificationContainer">
     </div>
 
     <script>
-        console.log('🌟 LEAN Menu - Recreated Design');
+        console.log('🌟 LEAN Menu - Exact Recreation');
 
-        let currentIndex = 4;
+        let currentIndex = 0; // بدأ من 0 كما في الصورة
         const menuItems = document.querySelectorAll('.menu-item');
         const counter = document.querySelector('.counter');
         const notificationContainer = document.getElementById('notificationContainer');
@@ -482,11 +478,10 @@
 
             notification.innerHTML = `
                 <div class="notification-content">
-                    <div class="notification-icon">${option.icon}</div>
+                    <div class="notification-icon">✔️</div>
                     <div class="notification-text">
                         <div class="notification-title">Activated</div>
-                        <div class="notification-message">${option.name} - ${option.desc}</div>
-                    </div>
+                        <div class="notification-message">${option.name}</div> </div>
                 </div>
                 <div class="notification-timer"></div>
             `;
@@ -503,8 +498,6 @@
             }, 4000);
         }
 
-        // تم إزالة showWelcomeNotification() لأنها ليست جزءًا من هذا التصميم المرئي في الصورة
-        // ويمكن إدارتها بالكامل من Lua إذا أردت.
 
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM Content Loaded. Initializing menu...');
