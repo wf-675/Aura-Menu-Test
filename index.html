@@ -12,7 +12,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* للتأكد من سلاسة الخطوط والعناصر */
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
@@ -24,35 +23,34 @@
             width: 100%;
             height: 100%;
             background-color: transparent !important;
-            overflow: hidden;
-            font-family: 'Roboto', sans-serif; /* الخط الافتراضي لمعظم النصوص */
+            overflow: hidden; /* لمنع أي سكرول بار */
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
-            color: #E0E0E0; /* لون نص فاتح قليلاً */
+            color: #E0E0E0;
             cursor: default;
-            display: flex;
-            /* لجعل المنيو في أعلى اليسار */
-            justify-content: flex-start;
-            align-items: flex-start;
-            padding: 0; /* تم إزالة البادينغ هنا لأن الموضع يتم التحكم فيه بواسطة Lua */
+            /* **تعديل هنا:** لا يوجد justify-content/align-items هنا. المنيو سيتم وضعه بـ absolute positioning */
             background-color: transparent !important;
         }
 
         /* حاوية القائمة الرئيسية */
         .menu-container {
-            width: 480px; /* **تعديل:** عرض المنيو ليتناسب مع الصورة الثانية (أضيق) */
+            width: 420px; /* **تعديل:** عرض المنيو ليتناسب مع الصورة (أضيق من السابق، لكن ليس صغيراً جداً) */
             height: auto; /* الارتفاع يتحدد تلقائياً حسب المحتوى */
-            min-height: 720px; /* **تعديل:** الحد الأدنى للارتفاع لجعله أطول ويستوعب كل العناصر */
-            background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة صلبة */
-            border-radius: 10px; /* حواف أقل استدارة */
-            border: 1px solid #10B981; /* لون حدود أخضر نيون داكن قليلاً (أغمق من الصورة السابقة) */
+            min-height: 680px; /* **تعديل:** الحد الأدنى للارتفاع لجعله أطول ويستوعب كل العناصر */
+            
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            border: 1px solid #10B981;
             box-shadow:
-                0 0 20px rgba(16, 185, 129, 0.5), /* ظل نيون أخضر حول القائمة */
+                0 0 20px rgba(16, 185, 129, 0.5),
                 inset 0 0 10px rgba(16, 185, 129, 0.2);
             overflow: hidden;
             animation: menuSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
+            position: absolute; /* **تعديل:** استخدم absolute positioning لوضعه بدقة */
+            top: 8%; /* **تعديل:** يبعد 8% من أعلى الشاشة (ليس ملتصقاً بالزاوية) */
+            left: 5%; /* **تعديل:** يبعد 5% من يسار الشاشة (ليس ملتصقاً بالزاوية) */
             display: flex;
             flex-direction: column;
         }
@@ -77,33 +75,32 @@
         /* رأس القائمة */
         .menu-header {
             width: 100%;
-            height: 140px; /* **تعديل:** ارتفاع مخصص لرأس القائمة حسب الصورة الجديدة */
+            height: 140px;
             background-image: url('https://i.imgur.com/your_lean_menu_image.png'); /* **ضع رابط صورتك هنا** */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            border-bottom: 1px solid #10B981; /* حدود نيون مطابقة للمنيو */
+            border-bottom: 1px solid #10B981;
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            padding-bottom: 10px; /* تباعد عن الأسفل */
+            padding-bottom: 10px;
         }
 
-        /* إخفاء العنوان والوصف الأصليين */
         .menu-title, .menu-subtitle {
             display: none;
         }
 
         .header-text {
-            font-family: 'Oxanium', sans-serif; /* استخدام Oxanium لـ "HOME" */
+            font-family: 'Oxanium', sans-serif;
             color: #E0E0E0;
-            font-size: 20px; /* **تعديل:** حجم خط "HOME" أكبر قليلاً ليناسب الصورة */
+            font-size: 20px;
             font-weight: 700;
-            letter-spacing: 1.5px; /* تباعد أحرف مناسب */
-            text-shadow: 0 0 10px rgba(16, 185, 129, 0.8); /* ظل نيون أخضر لرأس القائمة */
+            letter-spacing: 1.5px;
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
             text-transform: uppercase;
         }
 
@@ -118,14 +115,14 @@
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 12px 30px; /* **تعديل:** بادينغ للبنود ليتناسب مع الصورة (أوسع قليلاً) */
+            padding: 12px 30px;
             border-bottom: 1px solid rgba(16, 185, 129, 0.1);
             cursor: pointer;
             transition: background-color 0.15s ease-in-out, border-left 0.15s ease-in-out, transform 0.15s ease-in-out;
             position: relative;
             user-select: none;
             background-color: transparent !important;
-            min-height: 50px; /* **تعديل:** ارتفاع البنود ليتناسب مع الصورة */
+            min-height: 50px;
             overflow: hidden;
             width: 100%;
         }
@@ -139,41 +136,41 @@
         }
 
         .menu-item.selected {
-            background-color: #2D3A3B; /* لون خلفية العنصر المحدد كما في الصورة */
-            border-left: 5px solid #32CD32; /* **تعديل:** حدود خضراء نيون أفتح (ليمون) وأكثر سمكاً */
-            padding-left: 25px; /* تعويض المسافة بسبب الحدود */
+            background-color: #2D3A3B;
+            border-left: 5px solid #32CD32;
+            padding-left: 25px;
             transform: translateX(0);
             box-shadow: none;
         }
 
         /* الأيقونات المخصصة (Font Awesome) */
         .menu-item .icon {
-            width: 30px; /* **تعديل:** حجم أيقونة Font Awesome */
+            width: 30px;
             height: 30px;
-            margin-right: 18px; /* مسافة مناسبة */
+            margin-right: 18px;
             opacity: 0.9;
             transition: all 0.15s ease-in-out;
-            font-size: 24px; /* **تعديل:** حجم خط أيقونة Font Awesome */
+            font-size: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.5));
-            color: #E0E0E0; /* لون الأيقونة غير المحددة */
+            color: #E0E0E0;
         }
 
         .menu-item.selected .icon {
             opacity: 1;
             transform: scale(1.0);
-            filter: drop-shadow(0 0 10px rgba(50, 205, 50, 0.8)); /* ظل نيون أخضر للأيقونة */
-            color: #32CD32; /* **تعديل:** لون أخضر ليموني نيون للأيقونة المحددة */
+            filter: drop-shadow(0 0 10px rgba(50, 205, 50, 0.8));
+            color: #32CD32;
         }
 
         .menu-item .text {
             font-family: 'Roboto', sans-serif;
             flex: 1;
-            font-size: 18px; /* **تعديل:** حجم خط أكبر قليلاً للنصوص */
+            font-size: 18px;
             font-weight: 500;
-            color: #F0F0F0; /* لون نص فاتح جداً */
+            color: #F0F0F0;
             transition: all 0.15s ease-in-out;
             text-shadow: none;
         }
@@ -185,32 +182,32 @@
         }
 
         .menu-item .arrow {
-            font-size: 16px; /* **تعديل:** حجم سهم أكبر قليلاً */
-            color: #505050; /* لون رمادي داكن للسهم */
+            font-size: 16px;
+            color: #505050;
             transition: all 0.15s ease-in-out;
             font-weight: bold;
             opacity: 1;
         }
 
         .menu-item.selected .arrow {
-            color: #32CD32; /* أخضر ليموني نيون عند التحديد */
+            color: #32CD32;
             transform: translateX(0);
-            filter: drop-shadow(0 0 8px #32CD32); /* ظل نيون للسهم */
+            filter: drop-shadow(0 0 8px #32CD32);
             opacity: 1;
         }
 
         /* تذييل القائمة */
         .menu-footer {
             background-color: rgba(0, 0, 0, 0.9);
-            padding: 10px 30px; /* **تعديل:** بادينغ للفوتر ليتناسب مع الصورة */
+            padding: 10px 30px;
             font-family: 'Roboto', sans-serif;
-            font-size: 12px; /* **تعديل:** حجم خط الفوتر أكبر قليلاً */
+            font-size: 12px;
             color: #909090;
             border-top: 1px solid rgba(16, 185, 129, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 40px; /* **تعديل:** ارتفاع الفوتر أكبر قليلاً */
+            min-height: 40px;
             flex-shrink: 0;
         }
 
