@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LEAN Menu</title>
+    <title>Aura Menu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
@@ -35,16 +35,16 @@
 
         /* حاوية القائمة الرئيسية */
         .menu-container {
-            width: 380px; /* **تعديل:** عرض أصغر قليلاً */
+            width: 380px; /* **تعديل:** عرض المنيو ليتناسب مع الصورة الجديدة (ضيق) */
             height: auto;
-            min-height: 650px; /* **تعديل:** ارتفاع أصغر قليلاً */
+            min-height: 650px; /* **تعديل:** ارتفاع المنيو ليتناسب مع الصورة (طويل) */
             
             background-color: rgba(0, 0, 0, 0.9);
             border-radius: 10px;
-            border: 1px solid #FFD700; /* **تعديل:** لون ذهبي/أصفر للحدود */
+            border: 1px solid #10B981; /* **تعديل:** لون أخضر نيون للحدود */
             box-shadow:
-                0 0 20px rgba(255, 215, 0, 0.5), /* **تعديل:** ظل ذهبي/أصفر */
-                inset 0 0 10px rgba(255, 215, 0, 0.2);
+                0 0 20px rgba(16, 185, 129, 0.5), /* **تعديل:** ظل أخضر نيون */
+                inset 0 0 10px rgba(16, 185, 129, 0.2);
             overflow: hidden;
             animation: menuSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             position: absolute;
@@ -79,7 +79,7 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            border-bottom: 1px solid #FFD700; /* **تعديل:** لون ذهبي/أصفر */
+            border-bottom: 1px solid #10B981; /* **تعديل:** لون أخضر نيون */
             position: relative;
             overflow: hidden;
             flex-shrink: 0;
@@ -99,7 +99,7 @@
             font-size: 20px;
             font-weight: 700;
             letter-spacing: 1.5px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); /* **تعديل:** ظل ذهبي/أصفر */
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.8); /* **تعديل:** ظل أخضر نيون */
             text-transform: uppercase;
         }
 
@@ -115,7 +115,7 @@
             display: flex;
             align-items: center;
             padding: 12px 30px;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.1); /* **تعديل:** حدود ذهبية/صفراء شفافة */
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1); /* **تعديل:** حدود خضراء نيون شفافة */
             cursor: pointer;
             transition: background-color 0.2s ease-in-out, border-left 0.2s ease-in-out, color 0.2s ease-in-out; /* **تعديل:** انتقالات سلسة */
             position: relative;
@@ -134,8 +134,8 @@
         }
 
         .menu-item.selected {
-            background-color: rgba(255, 215, 0, 0.2); /* **تعديل:** خلفية ذهبية/صفراء شفافة عند التحديد */
-            border-left: 5px solid #FFD700; /* **تعديل:** حدود ذهبية/صفراء سميكة */
+            background-color: #2D3A3B; /* لون خلفية العنصر المحدد كما في الصورة */
+            border-left: 5px solid #32CD32; /* **تعديل:** حدود خضراء نيون (ليمون) سميكة */
             padding-left: 25px;
             transform: translateX(0);
             box-shadow: none;
@@ -159,8 +159,8 @@
         .menu-item.selected .icon {
             opacity: 1;
             transform: scale(1.0);
-            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8)); /* **تعديل:** ظل ذهبي/أصفر */
-            color: #FFEA00; /* **تعديل:** لون أصفر نيون أفتح للأيقونة المحددة */
+            filter: drop-shadow(0 0 10px rgba(50, 205, 50, 0.8)); /* **تعديل:** ظل أخضر نيون */
+            color: #32CD32; /* **تعديل:** لون أخضر نيون (ليمون) للأيقونة المحددة */
         }
 
         .menu-item .text {
@@ -188,9 +188,9 @@
         }
 
         .menu-item.selected .arrow {
-            color: #FFEA00; /* **تعديل:** أصفر نيون أفتح عند التحديد */
+            color: #32CD32; /* **تعديل:** أخضر نيون (ليمون) عند التحديد */
             transform: translateX(0);
-            filter: drop-shadow(0 0 8px #FFEA00); /* **تعديل:** ظل ذهبي/أصفر */
+            filter: drop-shadow(0 0 8px #32CD32); /* **تعديل:** ظل أخضر نيون */
             opacity: 1;
         }
 
@@ -201,7 +201,7 @@
             font-family: 'Roboto', sans-serif;
             font-size: 12px;
             color: #909090;
-            border-top: 1px solid rgba(255, 215, 0, 0.15); /* **تعديل:** حدود ذهبية/صفراء شفافة */
+            border-top: 1px solid rgba(16, 185, 129, 0.15); /* **تعديل:** حدود خضراء نيون شفافة */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -236,13 +236,13 @@
         }
 
         .notification {
-            background: #2D2D2D; /* **تعديل:** خلفية إشعار أغمق قليلاً */
-            border: 1px solid #FFD700; /* **تعديل:** حدود ذهبية/صفراء */
+            background: #2D3A3B;
+            border: 1px solid #32CD32; /* **تعديل:** حدود خضراء نيون */
             padding: 14px 20px;
             border-radius: 8px;
             min-width: 280px;
             max-width: 350px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.4); /* **تعديل:** ظل ذهبي/أصفر */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 10px rgba(50, 205, 50, 0.4); /* **تعديل:** ظل أخضر نيون */
             display: flex;
             align-items: center;
             animation: notificationSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
@@ -279,8 +279,8 @@
         .notification-icon {
             font-size: 24px;
             margin-right: 10px;
-            color: #FFEA00; /* **تعديل:** أيقونة إشعار باللون الأصفر النيون */
-            filter: drop-shadow(0 0 6px #FFEA00);
+            color: #32CD32; /* **تعديل:** أيقونة إشعار باللون الأخضر النيون */
+            filter: drop-shadow(0 0 6px #32CD32);
             animation: iconPulse 1.5s infinite ease-in-out;
         }
 
@@ -313,7 +313,7 @@
         .notification-timer {
             width: 100%;
             height: 3px;
-            background: #FFD700; /* **تعديل:** شريط الإشعار باللون الذهبي */
+            background: #32CD32; /* **تعديل:** شريط الإشعار باللون الأخضر النيون */
             position: absolute;
             bottom: 0;
             left: 0;
@@ -338,11 +338,11 @@
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="1" data-action="online">
-                <div class="icon"><i class="fa-solid fa-earth-americas"></i></div> <div class="text">Online</div>
+                <div class="icon"><i class="fa-solid fa-desktop"></i></div> <div class="text">Online</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="2" data-action="combat">
-                <div class="icon"><i class="fa-solid fa-gun"></i></div> <div class="text">Combat/Weapons</div>
+                <div class="icon"><i class="fa-solid fa-crosshairs"></i></div> <div class="text">Combat/Weapons</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="3" data-action="visual">
@@ -372,8 +372,7 @@
         </div>
 
         <div class="menu-footer">
-            <span class="version">Version: Beta | 24hrs ago (pls report bugs)</span>
-            <span class="counter">1/9</span>
+            <span class="version">Version: Beta | 24hrs ago</span> <span class="counter">5/9</span>
         </div>
     </div>
 
@@ -381,9 +380,9 @@
     </div>
 
     <script>
-        console.log('🌟 LEAN Menu - Pixel-Perfect Recreation');
+        console.log('🌟 Aura Menu - Pixel-Perfect Recreation');
 
-        let currentIndex = 0;
+        let currentIndex = 3; // **تعديل: بدأ من 3 ليتوافق مع "Visual" في الصورة**
         const menuItems = document.querySelectorAll('.menu-item');
         const counter = document.querySelector('.counter');
         const notificationContainer = document.getElementById('notificationContainer');
@@ -392,8 +391,8 @@
         // تحديث مصفوفة menuOptions لتشمل Font Awesome icons
         const menuOptions = [
             { name: "Self", icon: '<i class="fa-solid fa-user"></i>', desc: "Player Options" },
-            { name: "Online", icon: '<i class="fa-solid fa-earth-americas"></i>', desc: "Online Features" },
-            { name: "Combat/Weapons", icon: '<i class="fa-solid fa-gun"></i>', desc: "Weapon System" },
+            { name: "Online", icon: '<i class="fa-solid fa-desktop"></i>', desc: "Online Features" }, // **تغيير الأيقونة**
+            { name: "Combat/Weapons", icon: '<i class="fa-solid fa-crosshairs"></i>', desc: "Weapon System" }, // **تغيير الأيقونة**
             { name: "Visual", icon: '<i class="fa-solid fa-eye"></i>', desc: "Visual Effects" },
             { name: "Vehicle", icon: '<i class="fa-solid fa-car"></i>', desc: "Vehicle Menu" },
             { name: "Miscellaneous", icon: '<i class="fa-solid fa-folder-open"></i>', desc: "Other Options" },
