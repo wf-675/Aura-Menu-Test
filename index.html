@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEAN Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         /* إعادة تعيين الأساسيات */
@@ -24,8 +25,7 @@
             height: 100%;
             background-color: transparent !important;
             overflow: hidden;
-            /* الخط الرئيسي للمنيو */
-            font-family: 'Oxanium', sans-serif;
+            font-family: 'Roboto', sans-serif; /* الخط الافتراضي لمعظم النصوص */
         }
 
         body {
@@ -35,15 +35,15 @@
             /* لجعل المنيو في أعلى اليسار */
             justify-content: flex-start;
             align-items: flex-start;
-            padding: 20px; /* تباعد عن الحواف (يمكن ضبطه ليتناسب مع الصورة) */
+            padding: 0; /* تم إزالة البادينغ هنا لأن الموضع يتم التحكم فيه بواسطة Lua */
             background-color: transparent !important;
         }
 
         /* حاوية القائمة الرئيسية */
         .menu-container {
-            width: 380px; /* **تعديل:** عرض المنيو ليكون أضيق (بالبيكسل في HTML) */
+            width: 480px; /* **تعديل:** عرض المنيو ليتناسب مع الصورة الثانية (أضيق) */
             height: auto; /* الارتفاع يتحدد تلقائياً حسب المحتوى */
-            min-height: 620px; /* **تعديل:** الحد الأدنى للارتفاع لجعله أطول */
+            min-height: 720px; /* **تعديل:** الحد الأدنى للارتفاع لجعله أطول ويستوعب كل العناصر */
             background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة صلبة */
             border-radius: 10px; /* حواف أقل استدارة */
             border: 1px solid #10B981; /* لون حدود أخضر نيون داكن قليلاً (أغمق من الصورة السابقة) */
@@ -77,7 +77,7 @@
         /* رأس القائمة */
         .menu-header {
             width: 100%;
-            height: 120px; /* **تعديل:** ارتفاع مخصص لرأس القائمة حسب الصورة */
+            height: 140px; /* **تعديل:** ارتفاع مخصص لرأس القائمة حسب الصورة الجديدة */
             background-image: url('https://i.imgur.com/your_lean_menu_image.png'); /* **ضع رابط صورتك هنا** */
             background-size: cover;
             background-position: center;
@@ -89,7 +89,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-end;
-            padding-bottom: 8px; /* تباعد عن الأسفل */
+            padding-bottom: 10px; /* تباعد عن الأسفل */
         }
 
         /* إخفاء العنوان والوصف الأصليين */
@@ -98,18 +98,19 @@
         }
 
         .header-text {
+            font-family: 'Oxanium', sans-serif; /* استخدام Oxanium لـ "HOME" */
             color: #E0E0E0;
-            font-size: 18px; /* **تعديل:** حجم خط "HOME" أصغر قليلاً */
+            font-size: 20px; /* **تعديل:** حجم خط "HOME" أكبر قليلاً ليناسب الصورة */
             font-weight: 700;
-            letter-spacing: 1px; /* تباعد أحرف أقل */
-            text-shadow: 0 0 8px rgba(16, 185, 129, 0.8); /* ظل نيون أخضر لرأس القائمة */
+            letter-spacing: 1.5px; /* تباعد أحرف مناسب */
+            text-shadow: 0 0 10px rgba(16, 185, 129, 0.8); /* ظل نيون أخضر لرأس القائمة */
             text-transform: uppercase;
         }
 
 
         /* عناصر القائمة */
         .menu-items {
-            padding: 10px 0; /* تقليل البادينغ العلوي والسفلي */
+            padding: 10px 0;
             flex-grow: 1;
             overflow: hidden;
         }
@@ -117,14 +118,14 @@
         .menu-item {
             display: flex;
             align-items: center;
-            padding: 10px 25px; /* **تعديل:** تباعدات ضيقة ومناسبة جداً للصورة */
-            border-bottom: 1px solid rgba(16, 185, 129, 0.1); /* حدود نيون فاتحة جداً */
+            padding: 12px 30px; /* **تعديل:** بادينغ للبنود ليتناسب مع الصورة (أوسع قليلاً) */
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
             cursor: pointer;
-            transition: background-color 0.15s ease-in-out, border-left 0.15s ease-in-out, transform 0.15s ease-in-out; /* انتقال أسرع */
+            transition: background-color 0.15s ease-in-out, border-left 0.15s ease-in-out, transform 0.15s ease-in-out;
             position: relative;
             user-select: none;
             background-color: transparent !important;
-            min-height: 45px; /* **تعديل:** ارتفاع البنود ليتناسب مع الصورة */
+            min-height: 50px; /* **تعديل:** ارتفاع البنود ليتناسب مع الصورة */
             overflow: hidden;
             width: 100%;
         }
@@ -138,20 +139,21 @@
         }
 
         .menu-item.selected {
-            background-color: #2D3A3B; /* **تعديل:** لون خلفية العنصر المحدد كما في الصورة */
-            border-left: 4px solid #32CD32; /* **تعديل:** حدود خضراء نيون أفتح (ليمون) */
-            padding-left: 21px; /* تعويض المسافة بسبب الحدود */
+            background-color: #2D3A3B; /* لون خلفية العنصر المحدد كما في الصورة */
+            border-left: 5px solid #32CD32; /* **تعديل:** حدود خضراء نيون أفتح (ليمون) وأكثر سمكاً */
+            padding-left: 25px; /* تعويض المسافة بسبب الحدود */
             transform: translateX(0);
-            box-shadow: none; /* إزالة الظل الداخلي */
+            box-shadow: none;
         }
 
+        /* الأيقونات المخصصة (Font Awesome) */
         .menu-item .icon {
-            width: 28px; /* حجم أيقونة الايموجي كما في الصورة */
-            height: 28px;
-            margin-right: 15px; /* مسافة مناسبة */
+            width: 30px; /* **تعديل:** حجم أيقونة Font Awesome */
+            height: 30px;
+            margin-right: 18px; /* مسافة مناسبة */
             opacity: 0.9;
             transition: all 0.15s ease-in-out;
-            font-size: 22px; /* **تعديل:** حجم خط الايموجي */
+            font-size: 24px; /* **تعديل:** حجم خط أيقونة Font Awesome */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -161,70 +163,70 @@
 
         .menu-item.selected .icon {
             opacity: 1;
-            transform: scale(1.0); /* إزالة التكبير */
-            filter: drop-shadow(0 0 8px rgba(50, 205, 50, 0.8)); /* ظل نيون أخضر للأيقونة */
+            transform: scale(1.0);
+            filter: drop-shadow(0 0 10px rgba(50, 205, 50, 0.8)); /* ظل نيون أخضر للأيقونة */
             color: #32CD32; /* **تعديل:** لون أخضر ليموني نيون للأيقونة المحددة */
         }
 
         .menu-item .text {
+            font-family: 'Roboto', sans-serif;
             flex: 1;
-            font-family: 'Roboto', sans-serif; /* **تعديل:** استخدام Roboto للنصوص داخل البنود */
-            font-size: 16px; /* حجم الخط */
+            font-size: 18px; /* **تعديل:** حجم خط أكبر قليلاً للنصوص */
             font-weight: 500;
-            color: #E0E0E0; /* لون نص فاتح جداً */
+            color: #F0F0F0; /* لون نص فاتح جداً */
             transition: all 0.15s ease-in-out;
             text-shadow: none;
         }
 
         .menu-item.selected .text {
-            color: #FFFFFF; /* نص أبيض عند التحديد */
+            color: #FFFFFF;
             font-weight: 600;
-            text-shadow: none; /* إزالة الظل للنص المحدد */
+            text-shadow: none;
         }
 
         .menu-item .arrow {
-            font-size: 14px;
-            color: #505050; /* **تعديل:** لون رمادي داكن للسهم */
+            font-size: 16px; /* **تعديل:** حجم سهم أكبر قليلاً */
+            color: #505050; /* لون رمادي داكن للسهم */
             transition: all 0.15s ease-in-out;
             font-weight: bold;
             opacity: 1;
         }
 
         .menu-item.selected .arrow {
-            color: #32CD32; /* **تعديل:** أخضر ليموني نيون عند التحديد */
-            transform: translateX(0); /* إزالة الانزلاق */
-            filter: drop-shadow(0 0 6px #32CD32);
+            color: #32CD32; /* أخضر ليموني نيون عند التحديد */
+            transform: translateX(0);
+            filter: drop-shadow(0 0 8px #32CD32); /* ظل نيون للسهم */
             opacity: 1;
         }
 
         /* تذييل القائمة */
         .menu-footer {
-            background-color: rgba(0, 0, 0, 0.9); /* خلفية داكنة صلبة */
-            padding: 8px 25px; /* **تعديل:** بادينغ أصغر ليتناسب مع الصورة */
-            font-family: 'Roboto', sans-serif; /* استخدام Roboto للفوتر */
-            font-size: 11px; /* حجم خط أصغر */
-            color: #909090; /* لون نص رمادي أغمق */
-            border-top: 1px solid rgba(16, 185, 129, 0.15); /* حدود نيون فاتحة */
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px 30px; /* **تعديل:** بادينغ للفوتر ليتناسب مع الصورة */
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px; /* **تعديل:** حجم خط الفوتر أكبر قليلاً */
+            color: #909090;
+            border-top: 1px solid rgba(16, 185, 129, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 30px; /* **تعديل:** ارتفاع أقل */
+            min-height: 40px; /* **تعديل:** ارتفاع الفوتر أكبر قليلاً */
             flex-shrink: 0;
         }
 
         .menu-footer .version {
-            color: #909090; /* **تعديل:** لون رمادي مطابق للصورة */
-            font-weight: 400; /* وزن خط عادي */
-            text-shadow: none; /* إزالة الظل */
+            color: #909090;
+            font-weight: 400;
+            text-shadow: none;
         }
 
         .menu-footer .counter {
-            color: #909090; /* **تعديل:** لون رمادي مطابق للصورة */
+            color: #909090;
             font-weight: 400;
-            font-size: 11px;
-            padding: 0; /* إزالة البادينغ */
-            background-color: transparent; /* إزالة الخلفية */
-            border: none; /* إزالة الحدود */
+            font-size: 12px;
+            padding: 0;
+            background-color: transparent;
+            border: none;
         }
 
         /* إشعارات التفعيل */
@@ -239,8 +241,8 @@
         }
 
         .notification {
-            background: #2D3A3B; /* لون خلفية الإشعار مطابق للبنود المحددة */
-            border: 1px solid #32CD32; /* حدود خضراء نيون */
+            background: #2D3A3B;
+            border: 1px solid #32CD32;
             padding: 14px 20px;
             border-radius: 8px;
             min-width: 280px;
@@ -337,87 +339,77 @@
 
         <div class="menu-items">
             <div class="menu-item" data-index="0" data-action="self">
-                <div class="icon">👤</div>
-                <div class="text">Self</div>
+                <div class="icon"><i class="fa-solid fa-user"></i></div> <div class="text">Self</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="1" data-action="online">
-                <div class="icon">🌐</div>
-                <div class="text">Online</div>
+                <div class="icon"><i class="fa-solid fa-earth-americas"></i></div> <div class="text">Online</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="2" data-action="combat">
-                <div class="icon">⚔️</div>
-                <div class="text">Combat/Weapons</div>
+                <div class="icon"><i class="fa-solid fa-gun"></i></div> <div class="text">Combat/Weapons</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="3" data-action="visual">
-                <div class="icon">👁️</div>
-                <div class="text">Visual</div>
+                <div class="icon"><i class="fa-solid fa-eye"></i></div> <div class="text">Visual</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="4" data-action="vehicle">
-                <div class="icon">🚗</div>
-                <div class="text">Vehicle</div>
+                <div class="icon"><i class="fa-solid fa-car"></i></div> <div class="text">Vehicle</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="5" data-action="misc">
-                <div class="icon">📂</div>
-                <div class="text">Miscellaneous</div>
+                <div class="icon"><i class="fa-solid fa-folder-open"></i></div> <div class="text">Miscellaneous</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="6" data-action="destructive">
-                <div class="icon">💥</div>
-                <div class="text">Destructive</div>
+                <div class="icon"><i class="fa-solid fa-bomb"></i></div> <div class="text">Destructive</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="7" data-action="triggers">
-                <div class="icon">⚡</div>
-                <div class="text">Triggers</div>
+                <div class="icon"><i class="fa-solid fa-bolt"></i></div> <div class="text">Triggers</div>
                 <div class="arrow">»</div>
             </div>
             <div class="menu-item" data-index="8" data-action="settings">
-                <div class="icon">⚙️</div>
-                <div class="text">Settings</div>
+                <div class="icon"><i class="fa-solid fa-gear"></i></div> <div class="text">Settings</div>
                 <div class="arrow">»</div>
             </div>
         </div>
 
         <div class="menu-footer">
             <span class="version">Version: Beta | 24hrs ago (pls report bugs)</span>
-            <span class="counter">1/9</span> </div>
+            <span class="counter">1/9</span>
+        </div>
     </div>
 
     <div class="notification-container" id="notificationContainer">
     </div>
 
     <script>
-        console.log('🌟 LEAN Menu - Exact Recreation');
+        console.log('🌟 LEAN Menu - Pixel-Perfect Recreation');
 
-        let currentIndex = 0; // بدأ من 0 كما في الصورة
+        let currentIndex = 0;
         const menuItems = document.querySelectorAll('.menu-item');
         const counter = document.querySelector('.counter');
         const notificationContainer = document.getElementById('notificationContainer');
         const menuContainer = document.querySelector('.menu-container');
 
+        // تحديث مصفوفة menuOptions لتشمل Font Awesome icons
         const menuOptions = [
-            { name: "Self", icon: "👤", desc: "Player Options" },
-            { name: "Online", icon: "🌐", desc: "Online Features" },
-            { name: "Combat/Weapons", icon: "⚔️", desc: "Weapon System" },
-            { name: "Visual", icon: "👁️", desc: "Visual Effects" },
-            { name: "Vehicle", icon: "🚗", desc: "Vehicle Menu" },
-            { name: "Miscellaneous", icon: "📂", desc: "Other Options" },
-            { name: "Destructive", icon: "💥", desc: "Destruction Tools" },
-            { name: "Triggers", icon: "⚡", desc: "Event Triggers" },
-            { name: "Settings", icon: "⚙️", desc: "System Settings" }
+            { name: "Self", icon: '<i class="fa-solid fa-user"></i>', desc: "Player Options" },
+            { name: "Online", icon: '<i class="fa-solid fa-earth-americas"></i>', desc: "Online Features" },
+            { name: "Combat/Weapons", icon: '<i class="fa-solid fa-gun"></i>', desc: "Weapon System" },
+            { name: "Visual", icon: '<i class="fa-solid fa-eye"></i>', desc: "Visual Effects" },
+            { name: "Vehicle", icon: '<i class="fa-solid fa-car"></i>', desc: "Vehicle Menu" },
+            { name: "Miscellaneous", icon: '<i class="fa-solid fa-folder-open"></i>', desc: "Other Options" },
+            { name: "Destructive", icon: '<i class="fa-solid fa-bomb"></i>', desc: "Destruction Tools" },
+            { name: "Triggers", icon: '<i class="fa-solid fa-bolt"></i>', desc: "Event Triggers" },
+            { name: "Settings", icon: '<i class="fa-solid fa-gear"></i>', desc: "System Settings" }
         ];
 
         function updateSelection(index) {
-            console.log('Function updateSelection called with index:', index);
             if (index !== undefined && index >= 0 && index < menuItems.length) {
                 currentIndex = index;
-            } else {
-                console.warn('Invalid index provided to updateSelection. Using current index:', currentIndex);
             }
 
             menuItems.forEach((item, i) => {
@@ -430,15 +422,11 @@
             });
 
             counter.textContent = `${currentIndex + 1}/${menuItems.length}`;
-            console.log('Counter updated to:', counter.textContent);
         }
 
         function selectEffect(index) {
-            console.log('Function selectEffect called with index:', index);
             if (index !== undefined && index >= 0 && index < menuItems.length) {
                 currentIndex = index;
-            } else {
-                console.warn('Invalid index provided to selectEffect. Using current index:', currentIndex);
             }
 
             const selectedItem = menuItems[currentIndex];
@@ -446,7 +434,6 @@
                 selectedItem.classList.add('clicked');
                 setTimeout(() => selectedItem.classList.remove('clicked'), 400);
 
-                console.log('🎯 Select effect applied for index:', currentIndex);
                 if (typeof (GetParentResourceName) !== 'undefined') {
                     fetch(`https://${GetParentResourceName()}/menuSelected`, {
                         method: 'POST',
@@ -459,17 +446,13 @@
                         })
                     }).then(resp => resp.json()).then(resp => console.log('Sent menu selection to FiveM:', resp));
                 }
-            } else {
-                console.error('No selected item found for selectEffect at index:', currentIndex);
             }
         }
 
         function showNotification(index) {
-            console.log('Function showNotification called for index:', index);
             const option = menuOptions[index];
 
             if (!option) {
-                console.error('Notification option not found for index:', index);
                 return;
             }
 
@@ -478,10 +461,10 @@
 
             notification.innerHTML = `
                 <div class="notification-content">
-                    <div class="notification-icon">✔️</div>
-                    <div class="notification-text">
+                    <div class="notification-icon"><i class="fa-solid fa-check"></i></div> <div class="notification-text">
                         <div class="notification-title">Activated</div>
-                        <div class="notification-message">${option.name}</div> </div>
+                        <div class="notification-message">${option.name}</div>
+                    </div>
                 </div>
                 <div class="notification-timer"></div>
             `;
@@ -498,27 +481,19 @@
             }, 4000);
         }
 
-
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM Content Loaded. Initializing menu...');
             updateSelection(currentIndex);
-
             menuItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const index = parseInt(this.dataset.index);
-                    console.log('Clicked item with index:', index);
                     updateSelection(index);
                     selectEffect(index);
                 });
             });
-
-            console.log('✅ LEAN Menu ready for FiveM integration');
         });
 
         window.addEventListener('message', function(event) {
             const data = event.data;
-            console.log('📨 Message from FiveM:', data);
-
             try {
                 if (data.type === 'updateSelection') {
                     updateSelection(data.currentIndex);
