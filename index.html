@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Menu - Enhanced</title>
+    <title>Aura Menu - Enhanced</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
@@ -18,9 +17,9 @@
             padding: 0;
             width: 100%;
             height: 100%;
-            background: transparent !important;
+            background-color: transparent !important;
             overflow: hidden;
-            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
@@ -29,44 +28,38 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding-left: 30px;
+            padding-left: 1.5vw;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             background-color: transparent !important;
         }
 
         .menu-container {
-            width: 340px;
-            height: auto;
-            min-height: 620px;
-            background: transparent !important;
-            border-radius: 20px;
-            border: 1px solid rgba(100, 255, 180, 0.3);
+            width: 29vw; /* Adjusted for better fit */
+            height: 50vh; /* Adjusted for better height proportion */
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 1vw;
+            border: 0.05vw solid rgba(100, 255, 180, 0.3);
             box-shadow: 
-                0 8px 32px rgba(100, 255, 180, 0.05),
-                0 0 60px rgba(100, 255, 180, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+                0 0.4vw 1.6vw rgba(0, 0, 0, 0.4), 
+                inset 0 0 1vw rgba(100, 255, 180, 0.1);
             overflow: hidden;
             animation: menuSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
             position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
-        /* إزالة أي خلفية سوداء */
         .menu-container::before {
-            display: none !important;
-        }
-
-        .menu-container::after {
             display: none !important;
         }
 
         @keyframes menuSlideIn {
             0% {
                 opacity: 0;
-                transform: translateX(-50px) scale(0.95);
-                filter: blur(10px);
+                transform: translateX(-2.5vw) scale(0.95);
+                filter: blur(0.25vw);
             }
             100% {
                 opacity: 1;
@@ -80,11 +73,12 @@
                 rgba(100, 255, 180, 0.9) 0%,
                 rgba(64, 224, 208, 0.8) 50%,
                 rgba(0, 206, 209, 0.9) 100%);
-            padding: 28px 24px;
+            padding: 1.5vw 1.8vw;
             text-align: center;
-            border-bottom: 1px solid rgba(100, 255, 180, 0.2);
+            border-bottom: 0.05vw solid rgba(100, 255, 180, 0.2);
             position: relative;
             overflow: hidden;
+            flex-shrink: 0;
         }
 
         .menu-header::before {
@@ -107,47 +101,53 @@
         }
 
         .menu-title {
-            font-size: 36px;
+            font-size: 2.8vw;
             font-weight: 900;
-            letter-spacing: 6px;
+            letter-spacing: 0.4vw;
             text-shadow: 
-                0 4px 8px rgba(0, 0, 0, 0.5),
-                0 0 20px rgba(100, 255, 180, 0.6);
+                0 0.2vw 0.4vw rgba(0, 0, 0, 0.5),
+                0 0 1.25vw rgba(100, 255, 180, 0.7);
             color: #ffffff;
-            margin-bottom: 8px;
+            margin-bottom: 0.5vw;
             position: relative;
             z-index: 1;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         .menu-subtitle {
-            font-size: 12px;
+            font-size: 1vw;
             opacity: 0.95;
             color: #e8f8f5;
-            letter-spacing: 2px;
-            font-weight: 500;
+            letter-spacing: 0.2vw;
+            font-weight: 600;
             text-transform: uppercase;
             position: relative;
             z-index: 1;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         .menu-items {
-            padding: 12px 0;
-            background: transparent !important;
+            padding: 0.75vw 0;
+            flex-grow: 1;
+            overflow: hidden;
         }
 
         .menu-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 24px;
-            border-bottom: 1px solid rgba(100, 255, 180, 0.08);
+            padding: 0.5vw 1.8vw;
+            border-bottom: 0.05vw solid rgba(100, 255, 180, 0.08);
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             user-select: none;
             background: transparent !important;
-            min-height: 52px;
+            min-height: 2vw;
             overflow: hidden;
+            width: 100%;
         }
 
         .menu-item::before {
@@ -175,199 +175,158 @@
         .menu-item.selected {
             background: linear-gradient(90deg, 
                 rgba(100, 255, 180, 0.25) 0%, 
-                rgba(100, 255, 180, 0.08) 100%) !important;
-            border-left: 4px solid #64ffb4;
-            padding-left: 20px;
-            transform: translateX(8px) scale(1.02);
+                rgba(100, 255, 180, 0.08) 100%);
+            border-left: 0.3vw solid #64ffb4;
+            padding-left: 1.8vw;
+            transform: translateX(0.5vw) scale(1.02);
             box-shadow: 
-                inset 0 0 30px rgba(100, 255, 180, 0.15),
-                0 4px 20px rgba(100, 255, 180, 0.2);
+                inset 0 0 1.75vw rgba(100, 255, 180, 0.18),
+                0 0.3vw 1.25vw rgba(100, 255, 180, 0.25);
         }
 
         .menu-item .icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 16px;
-            opacity: 0.85;
+            width: 1.4vw;
+            height: 1.4vw;
+            margin-right: 0.9vw;
+            opacity: 0.95;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 18px;
+            font-size: 1vw;
             display: flex;
             align-items: center;
             justify-content: center;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 0.15vw 0.3vw rgba(0, 0, 0, 0.4));
         }
 
         .menu-item.selected .icon {
             opacity: 1;
-            transform: scale(1.15) rotate(5deg);
-            filter: drop-shadow(0 0 8px rgba(100, 255, 180, 0.6));
+            transform: scale(1.2) rotate(8deg);
+            filter: drop-shadow(0 0 0.5vw rgba(100, 255, 180, 0.8));
         }
 
         .menu-item .text {
             flex: 1;
-            font-size: 15px;
-            font-weight: 500;
+            font-size: 0.9vw;
+            font-weight: 600;
             color: #f8f9fa;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0.05vw 0.15vw rgba(0, 0, 0, 0.6);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         .menu-item.selected .text {
             color: #ffffff;
-            font-weight: 600;
-            text-shadow: 0 0 12px rgba(100, 255, 180, 0.4);
+            font-weight: 700;
+            text-shadow: 0 0 0.75vw rgba(100, 255, 180, 0.6);
         }
 
         .menu-item .arrow {
-            font-size: 16px;
-            color: rgba(100, 255, 180, 0.7);
+            font-size: 0.8vw;
+            color: rgba(100, 255, 180, 0.8);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-weight: bold;
         }
 
         .menu-item.selected .arrow {
             color: #64ffb4;
-            transform: translateX(6px) scale(1.3);
-            filter: drop-shadow(0 0 6px rgba(100, 255, 180, 0.8));
+            transform: translateX(0.4vw) scale(1.4);
+            filter: drop-shadow(0 0 0.4vw rgba(100, 255, 180, 0.9));
         }
 
         .menu-footer {
             background: transparent !important;
-            padding: 20px 24px;
-            font-size: 12px;
+            padding: 0.6vw 1.8vw;
+            font-size: 0.6vw;
             color: #cbd5e0;
-            border-top: 1px solid rgba(100, 255, 180, 0.15);
+            border-top: 0.05vw solid rgba(100, 255, 180, 0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 55px;
+            min-height: 2vw;
+            flex-shrink: 0;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         .menu-footer .version {
             color: #64ffb4;
-            font-weight: 600;
-            text-shadow: 0 0 8px rgba(100, 255, 180, 0.4);
+            font-weight: 700;
+            text-shadow: 0 0 0.5vw rgba(100, 255, 180, 0.5);
         }
 
         .menu-footer .counter {
             color: #64ffb4;
-            font-weight: 700;
-            font-size: 14px;
-            padding: 4px 12px;
+            font-weight: 800;
+            font-size: 0.6vw;
+            padding: 0.3vw 0.7vw;
             background: rgba(100, 255, 180, 0.1);
-            border-radius: 20px;
-            border: 1px solid rgba(100, 255, 180, 0.3);
+            border-radius: 1vw;
+            border: 0.05vw solid rgba(100, 255, 180, 0.3);
         }
 
-        .menu-item.clicked {
-            animation: clickPulse 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes clickPulse {
-            0% { 
-                transform: translateX(8px) scale(1.02);
-                box-shadow: inset 0 0 30px rgba(100, 255, 180, 0.15);
-            }
-            50% { 
-                transform: translateX(15px) scale(1.05);
-                box-shadow: 
-                    inset 0 0 40px rgba(100, 255, 180, 0.3),
-                    0 0 25px rgba(100, 255, 180, 0.4);
-            }
-            100% { 
-                transform: translateX(8px) scale(1.02);
-                box-shadow: inset 0 0 30px rgba(100, 255, 180, 0.15);
-            }
-        }
-
-        /* نظام الإشعارات - بدون خلفية سوداء */
         .notification-container {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 9999;
-            pointer-events: none;
+            bottom: 1vw;
+            right: 1vw;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5vw;
+            z-index: 1000;
         }
 
         .notification {
             background: linear-gradient(135deg, 
-                rgba(100, 255, 180, 0.95) 0%,
-                rgba(64, 224, 208, 0.9) 100%);
-            color: #ffffff;
-            padding: 18px 24px;
-            border-radius: 16px;
+                rgba(100, 255, 180, 0.9) 0%, 
+                rgba(0, 206, 209, 0.8) 100%);
+            padding: 0.8vw 1.2vw;
+            border-radius: 0.6vw;
+            min-width: 15vw;
+            max-width: 20vw;
             box-shadow: 
-                0 8px 32px rgba(100, 255, 180, 0.2),
-                0 0 40px rgba(100, 255, 180, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            min-width: 280px;
-            animation: notificationSlideIn 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
+                0 0.2vw 1vw rgba(0, 0, 0, 0.5),
+                inset 0 0 0.75vw rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            animation: notificationSlideIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            opacity: 0;
+            transform: translateY(1vw);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        .notification::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(255, 255, 255, 0.1) 50%, 
-                transparent 70%);
-            animation: notificationShine 3s infinite;
-        }
-
-        @keyframes notificationShine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .notification.fade-out {
+            opacity: 0;
+            transform: translateY(1vw);
         }
 
         @keyframes notificationSlideIn {
             0% {
                 opacity: 0;
-                transform: translateX(100px) scale(0.8);
-                filter: blur(10px);
+                transform: translateY(1vw) scale(0.95);
+                filter: blur(0.25vw);
             }
             100% {
                 opacity: 1;
-                transform: translateX(0) scale(1);
+                transform: translateY(0) scale(1);
                 filter: blur(0);
             }
-        }
-
-        @keyframes notificationSlideOut {
-            0% {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-                filter: blur(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(100px) scale(0.8);
-                filter: blur(10px);
-            }
-        }
-
-        .notification.fade-out {
-            animation: notificationSlideOut 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
         }
 
         .notification-content {
             display: flex;
             align-items: center;
-            position: relative;
-            z-index: 1;
+            flex: 1;
         }
 
         .notification-icon {
-            font-size: 24px;
-            margin-right: 12px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            font-size: 1.4vw;
+            margin-right: 0.6vw;
+            filter: drop-shadow(0 0 0.4vw rgba(255, 255, 255, 0.6));
+            animation: iconPulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         .notification-text {
@@ -375,80 +334,44 @@
         }
 
         .notification-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            font-size: 0.9vw;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 0 0.5vw rgba(100, 255, 180, 0.7);
+            margin-bottom: 0.2vw;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         .notification-message {
-            font-size: 14px;
-            opacity: 0.95;
-            font-weight: 500;
+            font-size: 0.8vw;
+            font-weight: 600;
+            color: #e8f8f5;
+            text-shadow: 0 0 0.25vw rgba(0, 0, 0, 0.4);
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
         .notification-timer {
+            width: 100%;
+            height: 0.2vw;
+            background: rgba(255, 255, 255, 0.2);
             position: absolute;
             bottom: 0;
             left: 0;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 0 0 16px 16px;
             animation: timerProgress 4s linear forwards;
         }
 
         @keyframes timerProgress {
             0% { width: 100%; }
-            100% { width: 0%; }
-        }
-
-        /* تأكيد إزالة كل الخلفيات السوداء */
-        html, body, .menu-container, .menu-items, .menu-item, .menu-footer {
-            background: transparent !important;
-            background-color: transparent !important;
-        }
-        
-        .menu-container {
-            filter: contrast(1.1) brightness(1.05) saturate(1.15);
-        }
-        
-        * {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-
-        /* منع ظهور أي عناصر خلفية */
-        *::before, *::after {
-            background: transparent !important;
-        }
-
-        .menu-item::before {
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(100, 255, 180, 0.1), 
-                transparent) !important;
-        }
-
-        .notification::before {
-            background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(255, 255, 255, 0.1) 50%, 
-                transparent 70%) !important;
-        }
-
-        .menu-header::before {
-            background: linear-gradient(45deg, 
-                transparent 30%, 
-                rgba(255, 255, 255, 0.1) 50%, 
-                transparent 70%) !important;
+            100% { width: 0; }
         }
     </style>
 </head>
 <body>
     <div class="menu-container">
         <div class="menu-header">
-            <div class="menu-title">MAIN</div>
+            <div class="menu-title">Aura</div>
             <div class="menu-subtitle">Advanced Menu System</div>
         </div>
 
@@ -501,24 +424,23 @@
         </div>
 
         <div class="menu-footer">
-            <span class="version">v2.1 | Main Enhanced</span>
+            <span class="version">v2.4 | Aura Enhanced</span>
             <span class="counter">5/9</span>
         </div>
     </div>
 
-    <!-- حاوية الإشعارات -->
     <div class="notification-container" id="notificationContainer">
     </div>
 
     <script>
-        console.log('🌟 Main Menu v2.1 - Clean No Background');
+        console.log('🌟 Aura Menu v2.4 - Enhanced Modern Design');
         
         let currentIndex = 4;
         const menuItems = document.querySelectorAll('.menu-item');
         const counter = document.querySelector('.counter');
         const notificationContainer = document.getElementById('notificationContainer');
+        const menuContainer = document.querySelector('.menu-container');
 
-        // أسماء الخيارات مع الأيقونات
         const menuOptions = [
             { name: "Self", icon: "👤", desc: "Player Options" },
             { name: "Online", icon: "🌐", desc: "Online Features" },
@@ -531,46 +453,71 @@
             { name: "Settings", icon: "⚙️", desc: "System Settings" }
         ];
 
-        // تحديث التحديد
         function updateSelection(index) {
-            if (index !== undefined) {
+            console.log('Function updateSelection called with index:', index);
+            if (index !== undefined && index >= 0 && index < menuItems.length) {
                 currentIndex = index;
+            } else {
+                console.warn('Invalid index provided to updateSelection. Using current index:', currentIndex);
             }
             
-            console.log('🔄 Selection updated to:', currentIndex);
-            
             menuItems.forEach((item, i) => {
-                item.classList.remove('selected');
+                if (item.classList.contains('selected')) {
+                    item.classList.remove('selected');
+                    console.log(`Removed 'selected' from item ${i}`);
+                }
                 if (i === currentIndex) {
                     item.classList.add('selected');
+                    console.log(`Added 'selected' to item ${i}`);
                 }
             });
             
-            counter.textContent = `${currentIndex + 1}/9`;
+            counter.textContent = `${currentIndex + 1}/${menuItems.length}`;
+            console.log('Counter updated to:', counter.textContent);
         }
 
-        // تأثير الاختيار مع الإشعار
         function selectEffect(index) {
-            if (index !== undefined) {
+            console.log('Function selectEffect called with index:', index);
+            if (index !== undefined && index >= 0 && index < menuItems.length) {
                 currentIndex = index;
+            } else {
+                console.warn('Invalid index provided to selectEffect. Using current index:', currentIndex);
             }
-            
+
             const selectedItem = menuItems[currentIndex];
             if (selectedItem) {
                 selectedItem.classList.add('clicked');
                 setTimeout(() => selectedItem.classList.remove('clicked'), 400);
                 
-                // إظهار الإشعار
                 showNotification(currentIndex);
                 
-                console.log('🎯 Select effect applied with notification');
+                console.log('🎯 Select effect applied with notification for index:', currentIndex);
+                if (typeof (GetParentResourceName) !== 'undefined') {
+                    fetch(`https://${GetParentResourceName()}/menuSelected`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json; charset=UTF-8',
+                        },
+                        body: JSON.stringify({
+                            action: selectedItem.dataset.action,
+                            index: currentIndex
+                        })
+                    }).then(resp => resp.json()).then(resp => console.log('Sent menu selection to FiveM:', resp));
+                }
+            } else {
+                console.error('No selected item found for selectEffect at index:', currentIndex);
             }
         }
 
-        // إظهار الإشعار
         function showNotification(index) {
+            console.log('Function showNotification called for index:', index);
             const option = menuOptions[index];
             
+            if (!option) {
+                console.error('Notification option not found for index:', index);
+                return;
+            }
+
             const notification = document.createElement('div');
             notification.className = 'notification';
             
@@ -587,7 +534,6 @@
             
             notificationContainer.appendChild(notification);
             
-            // إزالة الإشعار بعد 4 ثواني
             setTimeout(() => {
                 notification.classList.add('fade-out');
                 setTimeout(() => {
@@ -598,19 +544,8 @@
             }, 4000);
         }
 
-        // تهيئة أولية
-        document.addEventListener('DOMContentLoaded', function() {
-            updateSelection();
-            console.log('🌟 Main Menu Enhanced ready - No Background');
-            
-            // إشعار ترحيبي
-            setTimeout(() => {
-                showWelcomeNotification();
-            }, 500);
-        });
-
-        // إشعار ترحيبي
         function showWelcomeNotification() {
+            console.log('Showing welcome notification.');
             const notification = document.createElement('div');
             notification.className = 'notification';
             
@@ -619,7 +554,7 @@
                     <div class="notification-icon">🎉</div>
                     <div class="notification-text">
                         <div class="notification-title">مرحباً بك</div>
-                        <div class="notification-message">تم تحميل منيو Main بنجاح</div>
+                        <div class="notification-message">تم تحميل منيو Aura بنجاح</div>
                     </div>
                 </div>
                 <div class="notification-timer"></div>
@@ -637,25 +572,61 @@
             }, 4000);
         }
 
-        // استقبال رسائل من FiveM
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM Content Loaded. Initializing menu...');
+            updateSelection(currentIndex);
+            
+            setTimeout(() => {
+                showWelcomeNotification();
+            }, 500);
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const index = parseInt(this.dataset.index);
+                    console.log('Clicked item with index:', index);
+                    updateSelection(index);
+                    selectEffect(index);
+                });
+            });
+
+            console.log('✅ Enhanced Menu ready for FiveM integration');
+        });
+
         window.addEventListener('message', function(event) {
             const data = event.data;
             console.log('📨 Message from FiveM:', data);
             
             try {
                 if (data.type === 'updateSelection') {
+                    console.log('Received updateSelection request with index:', data.currentIndex);
                     updateSelection(data.currentIndex);
                 } else if (data.type === 'selectEffect') {
+                    console.log('Received selectEffect request with index:', data.index);
                     selectEffect(data.index);
                 } else if (data.type === 'showNotification') {
+                    console.log('Received showNotification request with index:', data.index);
                     showNotification(data.index || currentIndex);
+                } else if (data.type === 'moveUp') {
+                    console.log('Received moveUp request.');
+                    currentIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+                    updateSelection(currentIndex);
+                } else if (data.type === 'moveDown') {
+                    console.log('Received moveDown request.');
+                    currentIndex = (currentIndex + 1) % menuItems.length;
+                    updateSelection(currentIndex);
+                } else if (data.type === 'enter') {
+                    console.log('Received enter request. Simulating selection.');
+                    selectEffect(currentIndex);
+                } else if (data.type === 'openMenu') {
+                    console.log('Received openMenu request.');
+                    menuContainer.style.display = 'flex';
+                    updateSelection(currentIndex);
+                } else if (data.type === 'closeMenu') {
+                    console.log('Received closeMenu request.');
+                    menuContainer.style.display = 'none';
                 }
             } catch (error) {
-                console.error('Error processing message:', error);
+                console.error('Error processing message from FiveM:', error);
             }
         });
-
-        console.log('✅ Clean Menu ready for FiveM integration - No Background');
     </script>
-</body>
-</html>
